@@ -2,10 +2,10 @@ import React from 'react';
 
 const teamMembers = [
   { name: 'Maureen Lozares', role: 'Project Manager', link: 'https://www.linkedin.com/in/maureenlzrs/' },
-  { name: 'Ivan Medrano', role: 'Frontend Developer', link: 'https://github.com/teammate1' },
-  { name: 'Don Daniel Gube', role: 'Frontend Developer', link: 'https://github.com/teammate2' },
+  { name: 'Ivan Medrano', role: 'Frontend Developer', link: 'https://www.linkedin.com/in/medrano-ivan-b57509276/' },
+  { name: 'Don Daniel Gube', role: 'Frontend Developer', link: 'https://www.linkedin.com/in/don-daniell-gube/' },
   { name: 'Raniella Cuevas', role: 'Fullstack Developer', link: 'https://www.linkedin.com/in/raniellacuevas' },
-  { name: 'John Lorenz Mayo', role: 'Fullstack Developer', link: 'https://github.com/teammate4' },
+  { name: 'John Lorenz Mayo', role: 'Fullstack Developer', link: 'https://github.com/enzouro' },
 ];
 
 const CreditFooter = () => {
