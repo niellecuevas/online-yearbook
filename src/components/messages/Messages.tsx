@@ -26,7 +26,7 @@ const Messages = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<any[]>([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingDocId, setEditingDocId] = useState("");
 
@@ -166,7 +166,7 @@ const Messages = () => {
       className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >  
-      <h1 className="text-4xl font-bold text-center mb-6 text-white">🎓 Leave a Message!</h1>
+      <h1 className="text-4xl font-bold text-center mb-6 text-white font-[ChalkStick]">🎓 Leave a Message!</h1>
       <button
         className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg"
         onClick={() => setShowModal(true)}
