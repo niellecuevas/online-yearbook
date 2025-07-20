@@ -10,6 +10,11 @@ const ChalkStick = localFont({
   display: 'swap',
 });
 
+const CreamyChalk = localFont({
+  src: '../../public/fonts/CreamyChalk.ttf', // Adjust path as needed
+  variable: '--creamy-chalk-font',
+  display: 'swap',
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${ChalkStick.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${ChalkStick.variable} ${CreamyChalk.variable} font-sans`}
       >
         <Navbar />
         {children}
