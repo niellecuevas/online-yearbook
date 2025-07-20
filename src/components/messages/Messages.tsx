@@ -162,12 +162,16 @@ const Messages = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen px-4 py-12 bg-gradient-to-br from-yellow-100 to-pink-100">
+    <div
+      className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white"
+      style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
+    >  
+      <h1 className="text-4xl font-bold text-center mb-6 text-white">🎓 Leave a Message!</h1>
       <button
-        className="bg-amber-500 text-white py-2 px-6 rounded-md mx-auto block"
+        className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg"
         onClick={() => setShowModal(true)}
       >
-        Leave a Message
+        ✍️ Write on Chalkboard
       </button>
 
       {/* Modal */}
@@ -252,11 +256,11 @@ const Messages = () => {
       )}
 
       {/* Messages Grid */}
-      <div className="mt-10 columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 text-black">
+      <div className="mt-15 m-20 columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 text-black">
         {messages.map((msg, i) => (
           <div
             key={i}
-            className="bg-white break-inside-avoid p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+            className="break-inside-avoid p-4 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
             <p className="italic">“{msg.message}”</p>
             <p className="text-right text-sm text-amber-600 mt-2">
