@@ -3,7 +3,8 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import type { FC, ReactNode, ForwardedRef } from 'react';
-import { ArrowLeftCircle, ArrowRightCircle } from 'lucide-react'; 
+import Image from 'next/image';
+// Adjust path as needed
 
 // --- TYPE DEFINITIONS ---
 interface Student {
@@ -69,7 +70,7 @@ const allStudents: Student[] = [
   { name: 'MAMIIT, JOHN VICTOR', imageUrl: '/toga/Mamiit.JPG', motto: 'Be the light in someone\'s darkness' },
   { name: 'MANIGBAS, QUEENIE ANGELOU V.', imageUrl: '/toga/Manigbas.JPG', motto: 'Dream it, believe it, achieve it' },
   { name: 'MAULEON, ARABELLA LOIS P.', imageUrl: '/toga/Mauleon.JPG', motto: 'i\'ve learned a lot, but i forgot',  },
-  { name: 'MAYO, JOHN LORENZ Q.', imageUrl: '/toga/Mayo.JPG', motto: '30/30 rule; 30 mins code, 30 days pahinga' },
+  { name: 'MAYO, JOHN LORENZ Q.', imageUrl: '/toga/Mayo.JPG', motto: 'We are what we overcome.' },
   { name: 'MEDRANO, IVAN D.', imageUrl: '/toga/Medrano.JPG', motto: 'Happiness is homemade' },
   { name: 'MENDOZA, HARVEY L.', imageUrl: '/toga/Mendoza.JPG', motto: 'Be bold, be brave, be you' },
   { name: 'MINDANAO, ERICKA MAE C.', imageUrl: '/toga/Mindanao.JPG', motto: 'Life is short, make it sweet' },
@@ -88,6 +89,7 @@ const allStudents: Student[] = [
 // --- COMPONENTS ---
 const StudentProfile: FC<StudentProfileProps> = ({ name, imageUrl, motto, latinHonor, itPassport }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="relative flex flex-col items-center justify-start text-center h-full">
@@ -96,16 +98,18 @@ const StudentProfile: FC<StudentProfileProps> = ({ name, imageUrl, motto, latinH
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img 
-          src={imageUrl} 
-          alt={name} 
-          className={`w-full h-full object-contain object-center transition-all duration-300 ${isHovered ? 'blur-sm' : ''}`}
-          onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/120x128/e2e8f0/4a5568?text=Photo'; }}
+        <Image 
+          src={imageError ? 'https://placehold.co/120x128/e2e8f0/4a5568?text=Photo' : imageUrl}
+          alt={name}
+          fill
+          className={`object-contain object-center transition-all duration-300 ${isHovered ? 'blur-sm' : ''}`}
+          onError={() => setImageError(true)}
+          unoptimized={imageUrl.includes('placehold.co') || imageError}
         />
         
         {/* Motto overlay */}
         <div className={`absolute inset-0 flex items-center justify-center p-2 transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="text-white text-sm font-semibold text-center leading-tight drop-shadow-lg bg-black bg-opacity-70 p-2 rounded">
+          <p className="text-white text-sm font-semibold text-center leading-tight drop-shadow-lg bg-[#8B4513]/90 bg-opacity-70 p-2 rounded">
             "{motto}"
           </p>
         </div>
@@ -204,28 +208,35 @@ const Yearbook: FC = () => {
 
           </div>
 
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-4xl scale-95 lg:scale-100">
         {isClient ? (
           <HTMLFlipBook
             width={500}
             height={700}
             size="stretch"
-            minWidth={400}
+            minWidth={200}
             maxWidth={650}
-            minHeight={500}
+            minHeight={400}
             maxHeight={900}
             maxShadowOpacity={0.8}
             showCover={true}
             mobileScrollSupport={true}
             onFlip={handleFlip}
             ref={bookRef}
-            className="mx-auto rounded-lg"
+            className="mx-auto scale-90 lg:scale-100"
           >
             {/* Cover Page */}
             <Page number={0}>
               <div className="flex flex-col items-center justify-center h-full bg-red-800 text-white">
                 <div className="w-full max-w-md">
-                  <img src="/images/classpic.webp" alt="School Logo" className="w-full h-auto mb-4" />
+                  <Image 
+                    src="/images/classpic.webp" 
+                    alt="School Logo" 
+                    width={300}  // Add appropriate width
+                    height={200} // Add appropriate height
+                    className="w-full h-auto mb-4"
+                    priority // Optional: if this is above the fold
+                  />
                 </div>
                 <h2 className="text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Class of 2025</h2>
                 <p className="text-lg opacity-90">Yearbook</p>
