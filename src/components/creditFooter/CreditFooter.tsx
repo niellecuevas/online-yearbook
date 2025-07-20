@@ -26,7 +26,7 @@ const CreditFooter = () => {
             Developed with ❤️ by
           </h2>
           <p className="text-sm text-[#FAF3E0]/80 italic">
-            The team behind <span className="text-[#F8B259] font-medium">Saranggola Yearbook</span>
+            The team behind <span className="text-[#F8B259] font-medium">BAcked Up: The 02 Files</span>
           </p>
         </div>
 
@@ -55,7 +55,7 @@ const CreditFooter = () => {
 
         {/* Copyright */}
         <div className="mt-8 text-center text-xs text-[#FAF3E0]/60">
-          © {new Date().getFullYear()} Saranggola Yearbook. All rights reserved.
+          © {new Date().getFullYear()} BAcked Up: The 02 Files. All rights reserved.
         </div>
       </div>
     </footer>

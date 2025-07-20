@@ -43,12 +43,12 @@ const HTMLFlipBook = dynamic(() => import('react-pageflip'), {
 // --- MOCK DATA ---
 const allStudents: Student[] = [
   { name: 'AGOJO, JILLIAN GAYLE M.', imageUrl: '/toga/Agojo.JPG', motto: 'Dream big, work hard', },
-  { name: 'AGUILAR, ASHERA KATHRYN R.', imageUrl: '/toga/Aguilar.JPG', motto: 'Be the change you wish to see' },
-  { name: 'ALVAREZ, IRISH JANE P.', imageUrl: '/toga/Alvarez.JPG', motto: 'Life is what happens when you\'re busy making plans', itPassport: true },
+  { name: 'AGUILAR, ASHERA KATHRYN R.', imageUrl: '/toga/Aguilar.JPG', motto: '01000111 01101100 01101111 01110010 01111001 00100000 01110100 01101111 00100000 01000111 01101111 01100100' },
+  { name: 'ALVAREZ, IRISH JANE P.', imageUrl: '/toga/Alvarez.JPG', motto: 'Nasa Diyos ang awa, nasa akin ang mwa mwa', itPassport: true },
   { name: 'ATIENZA, KATE ANDREI R.', imageUrl: '/toga/Atienza.JPG', motto: 'Kindness is always fashionable', latinHonor: 'Cum Laude', itPassport: true },
   { name: 'BAUTISTA, CHRIS JOHN L.', imageUrl: '/toga/Bautista.JPG', motto: 'Adventure awaits around every corner' },
   { name: 'COMIA, MARIA ANDREA M.', imageUrl: '/toga/Comia.JPG', motto: 'Create your own sunshine', latinHonor: 'Cum Laude', itPassport: true},
-  { name: 'CUENCA, KIM PAOLO R.', imageUrl: '/toga/Cuenca.JPG', motto: 'Stay curious, stay humble', latinHonor: 'Cum Laude', itPassport: true },
+  { name: 'CUENCA, KIM PAOLO R.', imageUrl: '/toga/Cuenca.JPG', motto: 'Behind my smile, There\'s a teeth', latinHonor: 'Cum Laude', itPassport: true },
   { name: 'CUEVAS, RANIELLA R.', imageUrl: '/toga/Cuevas.JPG', motto: 'Believe in yourself and magic will happen', itPassport: true },
   { name: 'DE CASTRO, MC LAURENCE D.', imageUrl: '/toga/De Castro.JPG', motto: 'The best is yet to come' },
   { name: 'DE LA PEÑA, MARY ANN LEE D.', imageUrl: '/toga/Dela Pena.jpeg', motto: 'Live laugh love learn' },
@@ -57,19 +57,19 @@ const allStudents: Student[] = [
   { name: 'DULAY, VERONICA ANN', imageUrl: '/toga/Dulay.JPG', motto: 'Dare to be different' },
   { name: 'EBRADO, JED ENRIQUE M.', imageUrl: '/toga/Ebrado.JPG', motto: 'Spread positivity wherever you go' },
   { name: 'ENGGAY, RONALYN R.', imageUrl: 'https://placehold.co/150x150/8ecae6/023047?text=Enggay', motto: 'Chase your dreams fearlessly' },
-  { name: 'EVANGELISTA, JHON MATTHEW E.', imageUrl: '/toga/Evangelista.JPG', motto: 'Be yourself; everyone else is taken', itPassport: true },
+  { name: 'EVANGELISTA, JHON MATTHEW E.', imageUrl: '/toga/Evangelista.JPG', motto: 'next question', itPassport: true },
   { name: 'GARCIA, JELLO MARI C.', imageUrl: '/toga/Garcia.JPG', motto: 'Think outside the box' , latinHonor: 'Cum Laude', itPassport: true},
   { name: 'GUBE, DON DANIELL C.', imageUrl: '/toga/Gube.JPG', motto: 'Leave a little sparkle wherever you go', itPassport: true },
   { name: 'HERNANDEZ, MARC ANDREI L.', imageUrl: '/toga/Hernandez M.JPG', motto: 'Knowledge is power', itPassport: true },
   { name: 'HERNANDEZ, MARK JELO M.', imageUrl: '/toga/Hernandez J.JPG', motto: 'Work hard, play harder' },
-  { name: 'ILAO, JHON KYLE P.', imageUrl: '/toga/Ilao.JPG', motto: 'Find beauty in everything', latinHonor: 'Cum Laude', itPassport: true },
+  { name: 'ILAO, JHON KYLE P.', imageUrl: '/toga/Ilao.JPG', motto: 'I can do all things through Christ who strengthens me.', latinHonor: 'Cum Laude', itPassport: true },
   { name: 'KATIMBANG, CYRIL TIFFANY O.', imageUrl: '/toga/Katimbang.JPG', motto: 'Success is a journey, not a destination' },
   { name: 'LATADE, PATRICK JACOB H.', imageUrl: '/toga/Latade.JPG', motto: 'Keep moving forward', itPassport: true },
-  { name: 'LOZARES, MAUREEN V.', imageUrl: '/toga/Lozares.JPG', motto: 'Excellence is not a skill, it\'s an attitude', latinHonor: 'Cum Laude', itPassport: true },
+  { name: 'LOZARES, MAUREEN V.', imageUrl: '/toga/Lozares.JPG', motto: 'Who did? God did! I made it!', latinHonor: 'Cum Laude', itPassport: true },
   { name: 'MAMIIT, JOHN VICTOR', imageUrl: '/toga/Mamiit.JPG', motto: 'Be the light in someone\'s darkness' },
   { name: 'MANIGBAS, QUEENIE ANGELOU V.', imageUrl: '/toga/Manigbas.JPG', motto: 'Dream it, believe it, achieve it' },
   { name: 'MAULEON, ARABELLA LOIS P.', imageUrl: '/toga/Mauleon.JPG', motto: 'Curiosity never killed anything except ignorance',  },
-  { name: 'MAYO, JOHN LORENZ Q.', imageUrl: '/toga/Mayo.JPG', motto: 'Take chances, make mistakes, get messy' },
+  { name: 'MAYO, JOHN LORENZ Q.', imageUrl: '/toga/Mayo.JPG', motto: '30/30 rule; 30 mins code, 30 days pahinga' },
   { name: 'MEDRANO, IVAN D.', imageUrl: '/toga/Medrano.JPG', motto: 'Happiness is homemade' },
   { name: 'MENDOZA, HARVEY L.', imageUrl: '/toga/Mendoza.JPG', motto: 'Be bold, be brave, be you' },
   { name: 'MINDANAO, ERICKA MAE C.', imageUrl: '/toga/Mindanao.JPG', motto: 'Life is short, make it sweet' },
@@ -78,9 +78,9 @@ const allStudents: Student[] = [
   { name: 'PUNZALAN, JHONATHAN T.', imageUrl: '/toga/Punzalan.JPG', motto: 'Adventure is out there' },
   { name: 'REYES, MARIA BETTY R.', imageUrl: '/toga/Reyes.JPG', motto: 'Bloom where you are planted' },
   { name: 'SANZ, ALECKXANDER M.', imageUrl: '/toga/Sanz.JPG', motto: 'Make it happen' },
-  { name: 'SILANG, L-SON F.', imageUrl: '/toga/Silang.JPG', motto: 'Elegance is the only beauty that never fades' },
+  { name: 'SILANG, L-SON F.', imageUrl: '/toga/Silang.JPG', motto: 'SI LSON NA CLINGY KASURA?' },
   { name: 'SUAREZ, IRISH LEAN C.', imageUrl: '/toga/Suarez.JPG', motto: 'Courage is not the absence of fear' },
-  { name: 'TAPALLA, CYRUS E.', imageUrl: '/toga/Tapalla.JPG', motto: 'Small steps, big dreams', itPassport: true },
+  { name: 'TAPALLA, CYRUS E.', imageUrl: '/toga/Tapalla.JPG', motto: 'Napaka panget ni Lson', itPassport: true },
   { name: 'VALENCIA, DEXTER JAMES', imageUrl: '/toga/Valencia.JPG', motto: 'Navigate your own path' },
   { name: 'VILLANUEVA, CARLA ELIZA M.', imageUrl: '/toga/Villanueva.JPG', motto: 'Optimism is the faith that leads to achievement', latinHonor: 'Cum Laude', itPassport: true },
 ];
@@ -199,7 +199,7 @@ const Yearbook: FC = () => {
 
             {/* Subtitle */}
             <h2 className="text-center text-[1.2rem] text-[#FAF3E0] italic mb-12 max-w-[600px] mx-auto py-5">
-            Like a system upgraded over time, our bond has evolved—tested by bugs, refined by memories, and now ready to run in the real
+            Like a system upgraded over time, our bond has evolved—tested by bugs, refined by memories, and now ready to run in the real world.
             </h2>
 
           </div>
