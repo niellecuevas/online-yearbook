@@ -3,7 +3,7 @@ import React from 'react';
 const teamMembers = [
   { name: 'Maureen Lozares', role: 'Project Manager', link: 'https://www.linkedin.com/in/maureenlzrs/' },
   { name: 'Ivan Medrano', role: 'Frontend Developer', link: 'https://github.com/teammate1' },
-  { name: 'Don Daniel Gube', role: 'Frontend Developer', link: 'https://github.com/teammate2' },
+  { name: 'Don Daniell Gube', role: 'Frontend Developer', link: 'https://github.com/teammate2' },
   { name: 'Raniella Cuevas', role: 'Fullstack Developer', link: 'https://www.linkedin.com/in/raniellacuevas' },
   { name: 'John Lorenz Mayo', role: 'Fullstack Developer', link: 'https://github.com/teammate4' },
 ];
