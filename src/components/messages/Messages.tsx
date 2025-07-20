@@ -470,7 +470,7 @@ const Messages: React.FC = () => {
   return (
     <div
       id="messages"
-      className="relative min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
+      className="relative w-full min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >
       {/* Header */}
@@ -741,6 +741,26 @@ const Messages: React.FC = () => {
           )}
         </div>
       </PopUp>
+
+      {/* Messages Grid */}
+      {/* Messages Grid */}
+      <div className="mt-15 m-20 columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 text-black">
+        {messages.map((msg, i) => (
+          <div
+            key={i}
+            className="break-inside-avoid p-4 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
+          >
+            {/* Scrollable message content */}
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] custom-scrollbar">
+              "{msg.message}"
+            </div>
+
+            <p className="text-right text-sm text-amber-600 mt-2">
+              — {msg.name}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -4,6 +4,13 @@ import "./globals.css";
 import Navbar from "@/components/global/Navbar";
 import localFont from "next/font/local";
 
+
+const EasyChalk = localFont({
+  src: '../../public/fonts/EasterChalk.ttf', // Adjust path as needed
+  variable: '--easy-chalk-font',
+  display: 'swap',
+});
+
 const ChalkStick = localFont({
   src: '../../public/fonts/ChalkStick.ttf', // Adjust path as needed
   variable: '--chalk-stick-font',
@@ -39,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${ChalkStick.variable} ${CreamyChalk.variable} font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${EasyChalk.variable} ${ChalkStick.variable} ${CreamyChalk.variable}`}
       >
         <Navbar />
         {children}
