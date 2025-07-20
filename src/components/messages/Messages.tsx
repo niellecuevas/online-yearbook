@@ -34,7 +34,7 @@ interface Student {
 }
 
 interface StatusMessage {
-  type: 'success' | 'error' | 'info' | 'warning';
+  type: "success" | "error" | "info" | "warning";
   message: string;
   isVisible: boolean;
 }
@@ -60,41 +60,45 @@ const PopUp: React.FC<PopUpProps> = ({ isOpen, onClose, children }) => {
 
 // Status Component for feedback messages
 interface StatusMessageProps {
-  type: StatusMessage['type'];
+  type: StatusMessage["type"];
   message: string;
   isVisible: boolean;
 }
 
-const StatusMessageComponent: React.FC<StatusMessageProps> = ({ type, message, isVisible }) => {
+const StatusMessageComponent: React.FC<StatusMessageProps> = ({
+  type,
+  message,
+  isVisible,
+}) => {
   if (!isVisible) return null;
 
   const getStatusStyles = (): string => {
     switch (type) {
-      case 'success':
-        return 'bg-green-100 border-green-400 text-green-700';
-      case 'error':
-        return 'bg-red-100 border-red-400 text-red-700';
-      case 'info':
-        return 'bg-blue-100 border-blue-400 text-blue-700';
-      case 'warning':
-        return 'bg-yellow-100 border-yellow-400 text-yellow-700';
+      case "success":
+        return "bg-green-100 border-green-400 text-green-700";
+      case "error":
+        return "bg-red-100 border-red-400 text-red-700";
+      case "info":
+        return "bg-amber-100 border-amber-400 text-amber-700";
+      case "warning":
+        return "bg-yellow-100 border-yellow-400 text-yellow-700";
       default:
-        return 'bg-gray-100 border-gray-400 text-gray-700';
+        return "bg-gray-100 border-gray-400 text-gray-700";
     }
   };
 
   const getIcon = (): string => {
     switch (type) {
-      case 'success':
-        return '✅';
-      case 'error':
-        return '❌';
-      case 'info':
-        return 'ℹ️';
-      case 'warning':
-        return '⚠️';
+      case "success":
+        return "✅";
+      case "error":
+        return "❌";
+      case "info":
+        return "ℹ️";
+      case "warning":
+        return "⚠️";
       default:
-        return '📝';
+        return "📝";
     }
   };
 
@@ -109,15 +113,19 @@ const StatusMessageComponent: React.FC<StatusMessageProps> = ({ type, message, i
 };
 
 // Loading Animation Component
-const LoadingSpinner: React.FC<{ size?: 'sm' | 'md' | 'lg' }> = ({ size = 'md' }) => {
+const LoadingSpinner: React.FC<{ size?: "sm" | "md" | "lg" }> = ({
+  size = "md",
+}) => {
   const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-6 h-6',
-    lg: 'w-8 h-8'
+    sm: "w-4 h-4",
+    md: "w-6 h-6",
+    lg: "w-8 h-8",
   };
 
   return (
-    <div className={`${sizeClasses[size]} border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin`}></div>
+    <div
+      className={`${sizeClasses[size]} border-2 border-amber-200 border-t-amber-600 rounded-full animate-spin`}
+    ></div>
   );
 };
 
@@ -127,27 +135,33 @@ const OTPWaitingAnimation: React.FC = () => {
     <div className="flex flex-col items-center justify-center py-8 space-y-4">
       <div className="relative">
         {/* Pulsing envelope icon */}
-        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center animate-pulse">
+        <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center animate-pulse">
           <div className="text-2xl">📧</div>
         </div>
         {/* Animated dots around the envelope */}
         <div className="absolute -inset-2">
-          <div className="w-20 h-20 border-2 border-blue-300 rounded-full animate-ping opacity-20"></div>
+          <div className="w-20 h-20 border-2 border-amber-300 rounded-full animate-ping opacity-20"></div>
         </div>
         <div className="absolute -inset-1">
-          <div className="w-18 h-18 border border-blue-400 rounded-full animate-ping opacity-40 animation-delay-75"></div>
+          <div className="w-18 h-18 border border-amber-400 rounded-full animate-ping opacity-40 animation-delay-75"></div>
         </div>
       </div>
-      
+
       {/* Loading text with animated dots */}
       <div className="text-center">
-        <p className="text-lg font-semibold text-blue-700 mb-1">Sending OTP</p>
+        <p className="text-lg font-semibold text-amber-700 mb-1">Sending OTP</p>
         <div className="flex items-center justify-center space-x-1">
           <span className="text-gray-600">Please wait</span>
           <div className="flex space-x-1">
-            <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce"></div>
-            <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-1 h-1 bg-amber-500 rounded-full animate-bounce"></div>
+            <div
+              className="w-1 h-1 bg-amber-500 rounded-full animate-bounce"
+              style={{ animationDelay: "0.1s" }}
+            ></div>
+            <div
+              className="w-1 h-1 bg-amber-500 rounded-full animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
           </div>
         </div>
       </div>
@@ -169,31 +183,42 @@ const Messages: React.FC = () => {
   const [editingDocId, setEditingDocId] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSendingOtp, setIsSendingOtp] = useState<boolean>(false);
-  const [statusMessage, setStatusMessage] = useState<StatusMessage>({ type: 'info', message: '', isVisible: false });
+  const [statusMessage, setStatusMessage] = useState<StatusMessage>({
+    type: "info",
+    message: "",
+    isVisible: false,
+  });
   const [showConfirmDialog, setShowConfirmDialog] = useState<boolean>(false);
-  const [confirmCallback, setConfirmCallback] = useState<(() => void) | null>(null);
+  const [confirmCallback, setConfirmCallback] = useState<(() => void) | null>(
+    null
+  );
   const [currentPage, setCurrentPage] = useState<number>(0); // New state for pagination
 
-  const generateOtp = (): string => Math.floor(100000 + Math.random() * 900000).toString();
+  const generateOtp = (): string =>
+    Math.floor(100000 + Math.random() * 900000).toString();
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-   // Calculate pagination variables
-   const messagesPerPage = 9;
-   const pageCount = Math.ceil(messages.length / messagesPerPage);
-   const paginatedMessages = messages.slice(
-     currentPage * messagesPerPage,
-     (currentPage + 1) * messagesPerPage
-   );
+  // Calculate pagination variables
+  const messagesPerPage = 9;
+  const pageCount = Math.ceil(messages.length / messagesPerPage);
+  const paginatedMessages = messages.slice(
+    currentPage * messagesPerPage,
+    (currentPage + 1) * messagesPerPage
+  );
 
-  const showStatus = (type: StatusMessage['type'], message: string, duration: number = 3000): void => {
+  const showStatus = (
+    type: StatusMessage["type"],
+    message: string,
+    duration: number = 3000
+  ): void => {
     setStatusMessage({ type, message, isVisible: true });
     setTimeout(() => {
-      setStatusMessage(prev => ({ ...prev, isVisible: false }));
+      setStatusMessage((prev) => ({ ...prev, isVisible: false }));
     }, duration);
   };
 
   const showConfirmation = (message: string, callback: () => void): void => {
-    setStatusMessage({ type: 'warning', message, isVisible: true });
+    setStatusMessage({ type: "warning", message, isVisible: true });
     setShowConfirmDialog(true);
     setConfirmCallback(() => callback);
   };
@@ -204,13 +229,13 @@ const Messages: React.FC = () => {
     }
     setShowConfirmDialog(false);
     setConfirmCallback(null);
-    setStatusMessage(prev => ({ ...prev, isVisible: false }));
+    setStatusMessage((prev) => ({ ...prev, isVisible: false }));
   };
 
   const handleCancel = (): void => {
     setShowConfirmDialog(false);
     setConfirmCallback(null);
-    setStatusMessage(prev => ({ ...prev, isVisible: false }));
+    setStatusMessage((prev) => ({ ...prev, isVisible: false }));
   };
 
   const resetModal = (): void => {
@@ -225,19 +250,22 @@ const Messages: React.FC = () => {
     setEditingDocId("");
     setIsLoading(false);
     setIsSendingOtp(false);
-    setStatusMessage({ type: 'info', message: '', isVisible: false });
+    setStatusMessage({ type: "info", message: "", isVisible: false });
   };
 
   const handleSRSubmit = async (): Promise<void> => {
     if (!srCode.trim()) {
-      showStatus('error', 'Please enter your SR code');
+      showStatus("error", "Please enter your SR code");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const q = query(collection(db, "students"), where("srCode", "==", srCode));
+      const q = query(
+        collection(db, "students"),
+        where("srCode", "==", srCode)
+      );
       const snapshot = await getDocs(q);
 
       if (!snapshot.empty) {
@@ -246,15 +274,18 @@ const Messages: React.FC = () => {
         const fetchedName = student.name || "Anonymous";
 
         // Check if this SR code already submitted a message
-        const msgQuery = query(collection(db, "messages"), where("srCode", "==", srCode));
+        const msgQuery = query(
+          collection(db, "messages"),
+          where("srCode", "==", srCode)
+        );
         const msgSnapshot = await getDocs(msgQuery);
 
         if (!msgSnapshot.empty) {
           const existingMsg = msgSnapshot.docs[0];
           const existingMsgData = existingMsg.data() as Message;
-          
+
           showConfirmation(
-            "You already submitted a message. Do you want to edit it?",
+            "You already submitted a message. Do you want to edit it nanaman?",
             () => {
               setIsEditMode(true);
               setMessage(existingMsgData.message);
@@ -270,19 +301,22 @@ const Messages: React.FC = () => {
 
         await proceedWithOTP(email, fetchedName);
       } else {
-        showStatus('error', 'SR code not found. Please check and try again.');
+        showStatus("error", "SR code not found.bkadikapasa");
       }
     } catch (err) {
       console.error("Error sending OTP:", err);
-      showStatus('error', 'Failed to send OTP. Please try again.');
+      showStatus("error", "Failed to send OTP. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const proceedWithOTP = async (email: string, fetchedName: string): Promise<void> => {
+  const proceedWithOTP = async (
+    email: string,
+    fetchedName: string
+  ): Promise<void> => {
     setIsSendingOtp(true);
-    
+
     try {
       const generatedOtp = generateOtp();
 
@@ -306,10 +340,10 @@ const Messages: React.FC = () => {
       setStudentEmail(email);
       setName(fetchedName);
       setIsOtpSent(true);
-      showStatus('success', `OTP sent to: ${email}`);
+      showStatus("success", `OTP sent to: ${email}`);
     } catch (error) {
       console.error("Error sending OTP:", error);
-      showStatus('error', 'Failed to send OTP. Please try again.');
+      showStatus("error", "Failed to send OTP. Please try again.");
     } finally {
       setIsSendingOtp(false);
     }
@@ -317,7 +351,7 @@ const Messages: React.FC = () => {
 
   const handleOtpVerify = async (): Promise<void> => {
     if (!enteredOtp.trim()) {
-      showStatus('error', 'Please enter the OTP');
+      showStatus("error", "Please enter the OTP");
       return;
     }
 
@@ -326,24 +360,24 @@ const Messages: React.FC = () => {
     try {
       const otpDoc = await getDoc(doc(db, "otps", srCode));
       if (!otpDoc.exists()) {
-        showStatus('error', 'No OTP found. Please request a new one.');
+        showStatus("error", "No OTP found. Please request a new one.");
         setIsLoading(false);
         return;
       }
 
       const data = otpDoc.data();
       if (enteredOtp !== data.otp) {
-        showStatus('error', 'Incorrect OTP. Please check and try again.');
+        showStatus("error", "Incorrect OTP. Please check and try again.");
       } else if (new Date() > data.expiresAt.toDate()) {
-        showStatus('error', 'OTP expired. Please request a new one.');
+        showStatus("error", "OTP expired. Please request a new one.");
       } else {
         setIsOtpVerified(true);
         await deleteDoc(doc(db, "otps", srCode));
-        showStatus('success', 'OTP verified successfully!');
+        showStatus("success", "OTP verified successfully!");
       }
     } catch (err) {
       console.error("OTP verification error:", err);
-      showStatus('error', 'OTP verification failed. Please try again.');
+      showStatus("error", "OTP verification failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -351,7 +385,7 @@ const Messages: React.FC = () => {
 
   const handleSubmitMessage = async (): Promise<void> => {
     if (!message.trim()) {
-      showStatus('error', 'Please enter your message!');
+      showStatus("error", "Please enter your message!");
       return;
     }
 
@@ -363,7 +397,7 @@ const Messages: React.FC = () => {
           message,
           updatedAt: Timestamp.now(),
         });
-        showStatus('success', 'Message updated successfully!');
+        showStatus("success", "Message updated successfully!");
       } else {
         await addDoc(collection(db, "messages"), {
           srCode,
@@ -371,7 +405,7 @@ const Messages: React.FC = () => {
           message,
           createdAt: Timestamp.now(),
         });
-        showStatus('success', 'Message sent successfully! 🎉');
+        showStatus("success", "Message sent successfully! 🎉");
       }
 
       // Reset everything after a short delay to show success message
@@ -380,7 +414,7 @@ const Messages: React.FC = () => {
       }, 1500);
     } catch (err) {
       console.error("Message error:", err);
-      showStatus('error', 'Failed to submit message. Please try again.');
+      showStatus("error", "Failed to submit message. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -398,7 +432,7 @@ const Messages: React.FC = () => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent, action: () => void): void => {
-    if (e.key === 'Enter' && !isLoading && !isSendingOtp) {
+    if (e.key === "Enter" && !isLoading && !isSendingOtp) {
       action();
     }
   };
@@ -417,35 +451,35 @@ const Messages: React.FC = () => {
   };
 
   useEffect(() => {
-    const unsub = onSnapshot(
-      query(collection(db, "messages")),
-      (snapshot) => {
-        const msgs = snapshot.docs.map((doc) => {
-          const data = doc.data() as DocumentData;
-          return {
-            srCode: data.srCode,
-            name: data.name,
-            message: data.message,
-            createdAt: data.createdAt,
-            updatedAt: data.updatedAt,
-          } as Message;
-        });
-        setMessages(msgs.reverse());
-      }
-    );
+    const unsub = onSnapshot(query(collection(db, "messages")), (snapshot) => {
+      const msgs = snapshot.docs.map((doc) => {
+        const data = doc.data() as DocumentData;
+        return {
+          srCode: data.srCode,
+          name: data.name,
+          message: data.message,
+          createdAt: data.createdAt,
+          updatedAt: data.updatedAt,
+        } as Message;
+      });
+      setMessages(msgs.reverse());
+    });
     return () => unsub();
   }, []);
 
   return (
-    <div id="messages"
+    <div
+      id="messages"
       className="relative min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
-    >  
+    >
       {/* Header */}
       <div className="text-center mb-6">
-        <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white">Echoes of 02</h1>
+        <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white">
+          Echoes of 02
+        </h1>
         <button
-          className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl"
+          className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl cursor-pointer"
           onClick={() => setShowModal(true)}
         >
           ✍️ Write on Chalkboard
@@ -459,17 +493,25 @@ const Messages: React.FC = () => {
             key={i}
             className="break-inside-avoid p-4 px-10 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">"{msg.message}"</div>
-            <div className="text-right text-sm text-amber-500 mt-2">— {msg.name}</div>
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">
+              "{msg.message}"
+            </div>
+            <div className="text-right text-sm text-amber-500 mt-2">
+              — {msg.name}
+            </div>
           </div>
         ))}
-        
+
         {/* Fill empty slots */}
-        {paginatedMessages.length < messagesPerPage && 
-          Array.from({ length: messagesPerPage - paginatedMessages.length }).map((_, i) => (
-            <div key={`empty-${i}`} className="p-3 rounded-lg border border-dashed border-white/5"></div>
-          ))
-        }
+        {paginatedMessages.length < messagesPerPage &&
+          Array.from({
+            length: messagesPerPage - paginatedMessages.length,
+          }).map((_, i) => (
+            <div
+              key={`empty-${i}`}
+              className="p-3 rounded-lg border border-dashed border-white/5"
+            ></div>
+          ))}
       </div>
 
       {/* Pagination - Fixed at Bottom */}
@@ -478,53 +520,82 @@ const Messages: React.FC = () => {
           <button
             onClick={goToPrevPage}
             disabled={currentPage === 0}
-            className="p-1.5 disabled:opacity-30"
+            className="p-1.5 disabled:opacity-30 cursor-pointer"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
-          
+
           <div className="flex gap-1">
             {Array.from({ length: Math.min(5, pageCount) }).map((_, i) => {
-              const pageNum = pageCount <= 5 ? i : 
-                currentPage < 2 ? i : 
-                currentPage > pageCount - 3 ? pageCount - 5 + i : 
-                currentPage - 2 + i;
-              
+              const pageNum =
+                pageCount <= 5
+                  ? i
+                  : currentPage < 2
+                  ? i
+                  : currentPage > pageCount - 3
+                  ? pageCount - 5 + i
+                  : currentPage - 2 + i;
+
               return (
                 <button
                   key={pageNum}
                   onClick={() => goToPage(pageNum)}
-                  className={`w-7 h-7 text-xs rounded ${currentPage === pageNum ? 'bg-amber-400 text-black' : 'text-amber-100 hover:bg-white/10'}`}
+                  className={`w-7 h-7 text-xs rounded ${
+                    currentPage === pageNum
+                      ? "bg-amber-400 text-black"
+                      : "text-amber-100 hover:bg-white/10"
+                  }`}
                 >
                   {pageNum + 1}
                 </button>
               );
             })}
           </div>
-          
+
           <button
             onClick={goToNextPage}
             disabled={currentPage === pageCount - 1}
-            className="p-1.5 disabled:opacity-30"
+            className="p-1.5 disabled:opacity-30 cursor-pointer"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
         </div>
       </div>
 
-
       {/* Unified Modal */}
       <PopUp isOpen={showModal} onClose={handleModalClose}>
         <div className="p-6 space-y-4">
           {/* Status Message */}
-          <StatusMessageComponent 
-            type={statusMessage.type} 
-            message={statusMessage.message} 
-            isVisible={statusMessage.isVisible} 
+          <StatusMessageComponent
+            type={statusMessage.type}
+            message={statusMessage.message}
+            isVisible={statusMessage.isVisible}
           />
 
           {/* Confirmation Dialog */}
@@ -532,13 +603,13 @@ const Messages: React.FC = () => {
             <div className="flex gap-3 justify-end">
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded transition-colors"
+                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors cursor-pointer"
               >
                 Confirm
               </button>
@@ -557,14 +628,14 @@ const Messages: React.FC = () => {
                     value={srCode}
                     onChange={(e) => setSrCode(e.target.value)}
                     placeholder="e.g. 21-00001"
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#008d69] focus:border-[#008d69] outline-none transition-all"
                     disabled={isLoading}
                     onKeyPress={(e) => handleKeyPress(e, handleSRSubmit)}
                   />
                   <div className="flex justify-end gap-4 pt-2">
                     <button
                       onClick={handleModalClose}
-                      className="text-gray-500 hover:text-gray-700 px-4 py-2 transition-colors"
+                      className="text-gray-500 hover:text-gray-700 px-4 py-2 transition-colors cursor-pointer"
                       disabled={isLoading}
                     >
                       Cancel
@@ -572,7 +643,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={handleSRSubmit}
                       disabled={isLoading}
-                      className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      className="bg-amber-500 text-white px-6 py-2 rounded-lg hover:bg-amber-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
                     >
                       {isLoading && <LoadingSpinner size="sm" />}
                       Send OTP
@@ -597,7 +668,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={() => {
                         setIsOtpSent(false);
-                        setEnteredOtp('');
+                        setEnteredOtp("");
                       }}
                       className="text-gray-500 hover:text-gray-700 px-4 py-2 transition-colors"
                       disabled={isLoading}
@@ -607,7 +678,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={handleOtpVerify}
                       disabled={isLoading}
-                      className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto"
+                      className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto cursor-pointer"
                     >
                       {isLoading && <LoadingSpinner size="sm" />}
                       Verify OTP
@@ -617,10 +688,14 @@ const Messages: React.FC = () => {
               ) : (
                 <>
                   <h2 className="font-bold text-xl">
-                    {isEditMode ? "Edit your message ✏️" : "Leave your message 🎓"}
+                    {isEditMode
+                      ? "Edit your message ✏️"
+                      : "Leave your message 🎓"}
                   </h2>
                   <div className="mb-4">
-                    <label className="block text-sm text-gray-600 mb-2 font-medium">Name</label>
+                    <label className="block text-sm text-gray-600 mb-2 font-medium">
+                      Name
+                    </label>
                     <input
                       value={name}
                       readOnly
@@ -628,7 +703,9 @@ const Messages: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-600 mb-2 font-medium">Message</label>
+                    <label className="block text-sm text-gray-600 mb-2 font-medium">
+                      Message
+                    </label>
                     <textarea
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
@@ -642,9 +719,9 @@ const Messages: React.FC = () => {
                     <button
                       onClick={() => {
                         setIsOtpVerified(false);
-                        setEnteredOtp('');
+                        setEnteredOtp("");
                       }}
-                      className="text-gray-500 hover:text-gray-700 px-4 py-2 transition-colors"
+                      className="text-gray-500 hover:text-gray-700 px-4 py-2 transition-colors cursor-pointer"
                       disabled={isLoading}
                     >
                       Back
@@ -652,7 +729,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={handleSubmitMessage}
                       disabled={isLoading}
-                      className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto"
+                      className="bg-[#008d69] text-white px-6 py-2 rounded-lg hover:bg-[#005a43] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto cursor-pointer"
                     >
                       {isLoading && <LoadingSpinner size="sm" />}
                       {isEditMode ? "Save Changes" : "Send Message"}
