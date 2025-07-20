@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db } from "@/lib/firebaseConfig";
 import {
   collection,
@@ -172,8 +172,18 @@ const Messages: React.FC = () => {
   const [statusMessage, setStatusMessage] = useState<StatusMessage>({ type: 'info', message: '', isVisible: false });
   const [showConfirmDialog, setShowConfirmDialog] = useState<boolean>(false);
   const [confirmCallback, setConfirmCallback] = useState<(() => void) | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(0); // New state for pagination
 
   const generateOtp = (): string => Math.floor(100000 + Math.random() * 900000).toString();
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+   // Calculate pagination variables
+   const messagesPerPage = 9;
+   const pageCount = Math.ceil(messages.length / messagesPerPage);
+   const paginatedMessages = messages.slice(
+     currentPage * messagesPerPage,
+     (currentPage + 1) * messagesPerPage
+   );
 
   const showStatus = (type: StatusMessage['type'], message: string, duration: number = 3000): void => {
     setStatusMessage({ type, message, isVisible: true });
@@ -393,6 +403,19 @@ const Messages: React.FC = () => {
     }
   };
 
+  // Pagination handlers
+  const goToPage = (page: number): void => {
+    setCurrentPage(page);
+  };
+
+  const goToNextPage = (): void => {
+    setCurrentPage((prev) => Math.min(prev + 1, pageCount - 1));
+  };
+
+  const goToPrevPage = (): void => {
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
+  };
+
   useEffect(() => {
     const unsub = onSnapshot(
       query(collection(db, "messages")),
@@ -415,16 +438,84 @@ const Messages: React.FC = () => {
 
   return (
     <div id="messages"
-      className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
+      className="relative min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >  
-      <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white ">Echoes of 02</h1>
-      <button
-        className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl"
-        onClick={() => setShowModal(true)}
-      >
-        ✍️ Write on Chalkboard
-      </button>
+      {/* Header */}
+      <div className="text-center mb-6">
+        <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white">Echoes of 02</h1>
+        <button
+          className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl"
+          onClick={() => setShowModal(true)}
+        >
+          ✍️ Write on Chalkboard
+        </button>
+      </div>
+
+      {/* Messages Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 mb-16">
+        {paginatedMessages.map((msg, i) => (
+          <div
+            key={i}
+            className="break-inside-avoid p-4 px-10 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
+          >
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">"{msg.message}"</div>
+            <div className="text-right text-sm text-amber-500 mt-2">— {msg.name}</div>
+          </div>
+        ))}
+        
+        {/* Fill empty slots */}
+        {paginatedMessages.length < messagesPerPage && 
+          Array.from({ length: messagesPerPage - paginatedMessages.length }).map((_, i) => (
+            <div key={`empty-${i}`} className="p-3 rounded-lg border border-dashed border-white/5"></div>
+          ))
+        }
+      </div>
+
+      {/* Pagination - Fixed at Bottom */}
+      <div className="left-0 right-0 bg-black/80 py-3 backdrop-blur-sm">
+        <div className="flex justify-center items-center gap-2">
+          <button
+            onClick={goToPrevPage}
+            disabled={currentPage === 0}
+            className="p-1.5 disabled:opacity-30"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <div className="flex gap-1">
+            {Array.from({ length: Math.min(5, pageCount) }).map((_, i) => {
+              const pageNum = pageCount <= 5 ? i : 
+                currentPage < 2 ? i : 
+                currentPage > pageCount - 3 ? pageCount - 5 + i : 
+                currentPage - 2 + i;
+              
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => goToPage(pageNum)}
+                  className={`w-7 h-7 text-xs rounded ${currentPage === pageNum ? 'bg-amber-400 text-black' : 'text-amber-100 hover:bg-white/10'}`}
+                >
+                  {pageNum + 1}
+                </button>
+              );
+            })}
+          </div>
+          
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === pageCount - 1}
+            className="p-1.5 disabled:opacity-30"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
 
       {/* Unified Modal */}
       <PopUp isOpen={showModal} onClose={handleModalClose}>
@@ -573,28 +664,6 @@ const Messages: React.FC = () => {
           )}
         </div>
       </PopUp>
-
-      {/* Messages Grid */}
-      {/* Messages Grid */}
-      <div className="mt-15 m-20 columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 text-black">
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className="break-inside-avoid p-4 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
-          >
-            {/* Scrollable message content */}
-            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">
-  "{msg.message}"
-</div>
-
-
-            <p className="text-right text-sm text-amber-600 mt-2">
-              — {msg.name}
-            </p>
-          </div>
-        ))}
-      </div>
-
     </div>
   );
 };
