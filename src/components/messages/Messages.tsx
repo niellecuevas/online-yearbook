@@ -575,19 +575,26 @@ const Messages: React.FC = () => {
       </PopUp>
 
       {/* Messages Grid */}
+      {/* Messages Grid */}
       <div className="mt-15 m-20 columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4 text-black">
         {messages.map((msg, i) => (
           <div
             key={i}
             className="break-inside-avoid p-4 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
-            <p className="italic">"{msg.message}"</p>
+            {/* Scrollable message content */}
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">
+  "{msg.message}"
+</div>
+
+
             <p className="text-right text-sm text-amber-600 mt-2">
               — {msg.name}
             </p>
           </div>
         ))}
       </div>
+
     </div>
   );
 };
