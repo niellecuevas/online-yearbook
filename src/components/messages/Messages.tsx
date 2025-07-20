@@ -18,6 +18,7 @@ import {
 } from "firebase/firestore";
 import emailjs from "emailjs-com";
 
+
 // Types
 interface Message {
   srCode: string;
@@ -415,7 +416,7 @@ const Messages: React.FC = () => {
 
   return (
     <div id="messages"
-      className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
+      className="relative w-full min-h-screen px-4 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >  
       <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white ">Echoes of 02</h1>
@@ -583,9 +584,9 @@ const Messages: React.FC = () => {
             className="break-inside-avoid p-4 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
             {/* Scrollable message content */}
-            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">
-  "{msg.message}"
-</div>
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] custom-scrollbar">
+              "{msg.message}"
+            </div>
 
 
             <p className="text-right text-sm text-amber-600 mt-2">
