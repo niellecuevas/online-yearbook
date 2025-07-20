@@ -418,7 +418,7 @@ const Messages: React.FC = () => {
       className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >  
-      <h1 className="text-4xl font-bold text-center mb-6 text-white ">🎓 Leave a Message!</h1>
+      <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white ">Echoes of 02</h1>
       <button
         className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl"
         onClick={() => setShowModal(true)}

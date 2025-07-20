@@ -12,6 +12,11 @@ const CreditFooter = () => {
   return (
     <footer className="w-full bg-[#004030]/90 text-[#FAF3E0] py-12 backdrop-blur-md border-t border-[#FAF3E0]/20 shadow-inner">
       <div className="max-w-6xl mx-auto px-6">
+        
+     
+
+       
+
         {/* Header */}
         <div className="text-center mb-10">
           <h2
@@ -41,8 +46,15 @@ const CreditFooter = () => {
           ))}
         </div>
 
+        <hr className="border-t border-[#F8B259]/30 w-3/4 mx-auto mt-10 mb-2" />
+
+        {/* End Statement */}
+           <p className="mb-8 text-center text-[#FAF3E0] text-base sm:text-lg italic max-w-2xl mx-auto px-4 leading-relaxed font-light">
+          Like a website built from scratch, our journey was <span className="text-[#F8B259] font-medium">coded with trust</span>, <span className="text-[#F8B259] font-medium">designed with laughter</span>, and <span className="text-[#F8B259] font-medium">launched with love</span>.
+        </p>
+
         {/* Copyright */}
-        <div className="mt-12 text-center text-xs text-[#FAF3E0]/60">
+        <div className="mt-8 text-center text-xs text-[#FAF3E0]/60">
           © {new Date().getFullYear()} Saranggola Yearbook. All rights reserved.
         </div>
       </div>

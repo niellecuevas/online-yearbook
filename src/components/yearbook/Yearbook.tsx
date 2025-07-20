@@ -191,7 +191,7 @@ const Yearbook: FC = () => {
               className="text-5xl font-bold text-[#FFF8E7] tracking-wider"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Saranggola: A Journey of Friendship
+              The 02 Archives
             </h1>
 
             {/* Short horizontal line */}
@@ -199,7 +199,7 @@ const Yearbook: FC = () => {
 
             {/* Subtitle */}
             <h2 className="text-center text-[1.2rem] text-[#FAF3E0] italic mb-12 max-w-[600px] mx-auto py-5">
-              Like a kite soaring through the orange sky, our friendships have weathered every wind and season.
+            Like a system upgraded over time, our bond has evolved—tested by bugs, refined by memories, and now ready to run in the real
             </h2>
 
           </div>
@@ -299,7 +299,6 @@ const Yearbook: FC = () => {
         />
       </button>
     </div>
-
 
     </div>
   );
