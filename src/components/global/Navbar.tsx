@@ -52,16 +52,16 @@ const Navbar = () => {
           Ben & Ben Yearbook
         </div>
         <div className="flex gap-8">
-          {['#chalkboard', '#yearbook', '#developers'].map((href, index) => {
-            const text = ['Messages', 'Yearbook', 'Developers'][index];
+          {['#messages', '#yearbook'].map((href, index) => {
+            const text = ['Messages', 'Yearbook'][index];
             return (
               <a
                 key={href}
                 href={href}
-                className="relative text-white font-medium hover:text-[#D2B48C] transition-colors duration-300"
+                className="relative text-white font-medium hover:text-[#F8B259] transition-colors duration-300"
               >
                 {text}
-                <span className="absolute bottom-[-5px] left-0 w-0 h-[2px] bg-[#D2B48C] transition-all duration-300 hover:w-full"></span>
+                <span className="absolute bottom-[-5px] left-0 w-0 h-[2px] bg-[#F8B259] transition-all duration-300 hover:w-full"></span>
               </a>
             );
           })}

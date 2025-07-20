@@ -3,6 +3,7 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import type { FC, ReactNode, ForwardedRef } from 'react';
+import { ArrowLeftCircle, ArrowRightCircle } from 'lucide-react'; 
 
 // --- TYPE DEFINITIONS ---
 interface Student {
@@ -181,10 +182,28 @@ const Yearbook: FC = () => {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen w-full flex flex-col justify-center items-center p-4 font-sans">
-      <h1 className="text-5xl font-bold text-white mb-2 tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>Our Yearbook</h1>
-      <p className="text-lg text-gray-300 mb-8">Class of 2024</p>
-      
+      <div
+          id="yearbook"
+          className="bg-[#8B4513]/90 min-h-screen w-full flex flex-col justify-center items-center p-4 font-sans" >
+
+          <div className="text-center pt-20">
+            <h1
+              className="text-5xl font-bold text-[#FFF8E7] tracking-wider"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Saranggola: A Journey of Friendship
+            </h1>
+
+            {/* Short horizontal line */}
+            <hr className="w-16 border-t-2 border-[#F8B259] mx-auto my-4" />
+
+            {/* Subtitle */}
+            <h2 className="text-center text-[1.2rem] text-[#FAF3E0] italic mb-12 max-w-[600px] mx-auto py-5">
+              Like a kite soaring through the orange sky, our friendships have weathered every wind and season.
+            </h2>
+
+          </div>
+
       <div className="w-full max-w-4xl">
         {isClient ? (
           <HTMLFlipBook
@@ -195,7 +214,7 @@ const Yearbook: FC = () => {
             maxWidth={650}
             minHeight={500}
             maxHeight={900}
-            maxShadowOpacity={0.5}
+            maxShadowOpacity={0.8}
             showCover={true}
             mobileScrollSupport={true}
             onFlip={handleFlip}
@@ -249,24 +268,39 @@ const Yearbook: FC = () => {
       </div>
 
       {/* Navigation Controls */}
-      <div className="mt-8 flex items-center space-x-6">
-        <button 
-          onClick={goToPrevPage}
-          className="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition-colors disabled:bg-gray-600"
-          disabled={currentPage === 0 || !isClient}
-        >
-          Previous
-        </button>
-        <div className="text-white text-lg font-medium">
-          Page {currentPage} of {totalPages}
-        </div>
-        <button 
-          onClick={goToNextPage}
-          className="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition-colors disabled:bg-gray-600"
-        >
-          Next
-        </button>
+      <div className="mt-8 flex items-center space-x-6 pb-5">
+      {/* Left Button */}
+      <button
+        onClick={goToPrevPage}
+        className="transition-all disabled:opacity-50 hover:scale-100"
+        disabled={currentPage === 0 || !isClient}
+      >
+        <img
+          src="/images/arrow.png" // adjust path to match your public folder
+          alt="Previous"
+          className="w-10 h-10 rotate-[-135deg]"
+        />
+      </button>
+
+      {/* Page Count */}
+      <div className="text-[#FAF3E0] text-lg font-medium">
+        Page {currentPage} of {totalPages}
       </div>
+
+      {/* Right Button */}
+      <button
+        onClick={goToNextPage}
+        className="transition-all disabled:opacity-50 hover:scale-105"
+      >
+        <img
+          src="/images/arrow.png"
+          alt="Next"
+          className="w-10 h-10 rotate-[45deg]"
+        />
+      </button>
+    </div>
+
+
     </div>
   );
 };

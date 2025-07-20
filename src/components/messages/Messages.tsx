@@ -414,7 +414,7 @@ const Messages: React.FC = () => {
   }, []);
 
   return (
-    <div
+    <div id="messages"
       className="relative min-h-screen px-4 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
       style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
     >  
