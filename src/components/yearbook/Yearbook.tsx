@@ -63,7 +63,7 @@ const allStudents: Student[] = [
   {
     name: "ATIENZA, KATE ANDREI R.",
     imageUrl: "/toga/Atienza.JPG",
-    motto: "Kindness is always fashionable",
+    motto: "Overthink Responsibly",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
@@ -101,18 +101,18 @@ const allStudents: Student[] = [
   {
     name: "DE LA PEÑA, MARY ANN LEE D.",
     imageUrl: "/toga/Dela Pena.jpeg",
-    motto: "Live laugh love learn",
+    motto: "The journey doesn't end here it simply changes direction.",
   },
   {
     name: "DE LEON, MARIA ANDREA N.",
     imageUrl: "/toga/De Leon.JPG",
-    motto: "Make every moment count",
+    motto: "We Came. We Learned. We\’re (Kinda) Ready.",
     itPassport: true,
   },
   {
     name: "DE VILLA, SIMONE LOUIS O.",
     imageUrl: "/toga/De Villa.JPG",
-    motto: "Embrace the journey",
+    motto: "I have no idea what\’s next, but at least I have my diploma.",
   },
   {
     name: "DULAY, VERONICA ANN",
@@ -122,17 +122,12 @@ const allStudents: Student[] = [
   {
     name: "EBRADO, JED ENRIQUE M.",
     imageUrl: "/toga/Ebrado.JPG",
-    motto: "Spread positivity wherever you go",
-  },
-  {
-    name: "ENGGAY, RONALYN R.",
-    imageUrl: "https://placehold.co/150x150/8ecae6/023047?text=Enggay",
-    motto: "Chase your dreams fearlessly",
+    motto: "It is what it is. WHAT CAN YOU DO",
   },
   {
     name: "EVANGELISTA, JHON MATTHEW E.",
     imageUrl: "/toga/Evangelista.JPG",
-    motto: "next question",
+    motto: "Time to rotate — from classrooms to careers. GGs, Class of 2025!",
     itPassport: true,
   },
   {
@@ -157,24 +152,24 @@ const allStudents: Student[] = [
   {
     name: "HERNANDEZ, MARK JELO M.",
     imageUrl: "/toga/Hernandez J.JPG",
-    motto: "Work hard, play harder",
+    motto: "BAHALA NA SI BATMAN",
   },
   {
     name: "ILAO, JHON KYLE P.",
     imageUrl: "/toga/Ilao.JPG",
-    motto: "I can do all things through Christ who strengthens me.",
+    motto: "Overthinking it so you will too...",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "KATIMBANG, CYRIL TIFFANY O.",
     imageUrl: "/toga/Katimbang.JPG",
-    motto: "Success is a journey, not a destination",
+    motto: "I can do all things through Christ who strengthens me.",
   },
   {
     name: "LATADE, PATRICK JACOB H.",
     imageUrl: "/toga/Latade.JPG",
-    motto: "Keep moving forward",
+    motto: "Code. Run. Error. Repeat",
     itPassport: true,
   },
   {
@@ -207,17 +202,17 @@ const allStudents: Student[] = [
   {
     name: "MEDRANO, IVAN D.",
     imageUrl: "/toga/Medrano.JPG",
-    motto: "Happiness is homemade",
+    motto: "until effort meets opportunity",
   },
   {
     name: "MENDOZA, HARVEY L.",
     imageUrl: "/toga/Mendoza.JPG",
-    motto: "Be bold, be brave, be you",
+    motto: "Win or Learn , Never Lose",
   },
   {
     name: "MINDANAO, ERICKA MAE C.",
     imageUrl: "/toga/Mindanao.JPG",
-    motto: "Life is short, make it sweet",
+    motto: "Code complete. Life loading…",
   },
   {
     name: "MONTEALTO, JUAN MIGUEL M.",
@@ -227,7 +222,7 @@ const allStudents: Student[] = [
   {
     name: "PLOPENIO, EDBERT P.",
     imageUrl: "/toga/Plopenio.JPG",
-    motto: "Grace under pressure",
+    motto: "May the source be with you.",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
@@ -239,12 +234,12 @@ const allStudents: Student[] = [
   {
     name: "REYES, MARIA BETTY R.",
     imageUrl: "/toga/Reyes.JPG",
-    motto: "Bloom where you are planted",
+    motto: "still debugging life.",
   },
   {
     name: "SANZ, ALECKXANDER M.",
     imageUrl: "/toga/Sanz.JPG",
-    motto: "Make it happen",
+    motto: "Proof that Googling everything can get you a degree.",
   },
   {
     name: "SILANG, L-SON F.",
@@ -259,7 +254,7 @@ const allStudents: Student[] = [
   {
     name: "TAPALLA, CYRUS E.",
     imageUrl: "/toga/Tapalla.JPG",
-    motto: "Napaka panget ni Lson",
+    motto: "Peace Out",
     itPassport: true,
   },
   {
@@ -326,18 +321,18 @@ const StudentProfile: FC<StudentProfileProps> = ({
         <p className="text-sm font-semibold text-gray-700 leading-tight text-center mb-1">
           {name}
         </p>
-        <div className="flex flex-col items-center space-y-1">
+        <div className="flex flex-col items-center space-y-1 mt-0.2">
           {latinHonor && (
-            <p className="text-xs italic text-red-600 font-medium">
+            <p className="text-[0.7rem] italic font-semibold text-[#653C12] leading-tight mb-1">
               {latinHonor}
             </p>
           )}
           {itPassport && (
-            <p className="text-xs italic text-blue-600 font-medium">
+            <p className="text-[0.65rem] italic font-semibold text-[#653C12] leading-tight">
               IT Passport Passer
             </p>
           )}
-        </div>
+      </div>
       </div>
     </div>
   );
