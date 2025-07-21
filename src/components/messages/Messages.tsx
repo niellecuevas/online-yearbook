@@ -490,7 +490,7 @@ const Messages: React.FC = () => {
             key={i}
             className="break-inside-avoid p-4 px-10 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-hidden">
+            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-thin scrollbar-thumb-[#FAF3E0]/30 scrollbar-track-transparent">
               "{msg.message}"
             </div>
             <div className="text-right text-sm text-amber-500 mt-2">
@@ -525,7 +525,7 @@ const Messages: React.FC = () => {
           }, 50);
         }}
         disabled={currentPage === 0}
-        className="transition-all disabled:opacity-50 hover:scale-105"
+        className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
       >
         <img
           src="/images/arrow.png"
@@ -551,7 +551,7 @@ const Messages: React.FC = () => {
           }, 50);
         }}
         disabled={currentPage === pageCount - 1}
-        className="transition-all disabled:opacity-50 hover:scale-105"
+        className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
       >
         <img
           src="/images/arrow.png"

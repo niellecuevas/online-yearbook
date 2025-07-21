@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
   --background: #ffffff;
@@ -39,32 +43,25 @@ html {
 }
 
 
-/* Add this to your CSS file or in a <style> tag */
-.custom-scrollbar {
-  /* Webkit browsers (Chrome, Safari, Edge) */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(250, 243, 224, 0.3) transparent;
-}
+@layer utilities {
+  /* For Webkit-based browsers (Chrome, Safari) */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(250, 243, 224, 0.3);
+    border-radius: 3px;
+  }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(250, 243, 224, 0.3);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(250, 243, 224, 0.5);
-}
-
-/* For Firefox */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(250, 243, 224, 0.3) transparent;
+  /* For Firefox */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(250, 243, 224, 0.3) transparent;
+  }
 }
