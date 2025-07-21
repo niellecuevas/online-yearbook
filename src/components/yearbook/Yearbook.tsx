@@ -4,7 +4,6 @@ import React, { useState, useRef, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import type { FC, ReactNode, ForwardedRef } from "react";
 import Image from "next/image";
-// Adjust path as needed
 
 // --- TYPE DEFINITIONS ---
 interface Student {
@@ -28,11 +27,13 @@ interface PageProps {
   number: number;
 }
 
+// Updated FlipBook ref interface
 interface FlipBookRef {
   pageFlip: () => {
     flipNext: () => void;
     flipPrev: () => void;
     getPageCount: () => number;
+    getCurrentPageIndex: () => number;
   };
 }
 
@@ -45,43 +46,43 @@ const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
 const allStudents: Student[] = [
   {
     name: "AGOJO, JILLIAN GAYLE M.",
-    imageUrl: "/toga/Agojo.JPG",
+    imageUrl: "/toga/Agojo.webp",
     motto: "Dream big, work hard",
   },
   {
     name: "AGUILAR, ASHERA KATHRYN R.",
-    imageUrl: "/toga/Aguilar.JPG",
+    imageUrl: "/toga/Aguilar.webp",
     motto:
       "01000111 01101100 01101111 01110010 01111001 00100000 01110100 01101111 00100000 01000111 01101111 01100100",
   },
   {
     name: "ALVAREZ, IRISH JANE P.",
-    imageUrl: "/toga/Alvarez.JPG",
+    imageUrl: "/toga/Alvarez.webp",
     motto: "Nasa Diyos ang awa, nasa akin ang mwa mwa",
     itPassport: true,
   },
   {
     name: "ATIENZA, KATE ANDREI R.",
-    imageUrl: "/toga/Atienza.JPG",
+    imageUrl: "/toga/Atienza.webp",
     motto: "Overthink Responsibly",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "BAUTISTA, CHRIS JOHN L.",
-    imageUrl: "/toga/Bautista.JPG",
+    imageUrl: "/toga/Bautista.webp",
     motto: "Adventure awaits around every corner",
   },
   {
     name: "COMIA, MARIA ANDREA M.",
-    imageUrl: "/toga/Comia.JPG",
+    imageUrl: "/toga/Comia.webp",
     motto: "Create your own sunshine",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "CUENCA, KIM PAOLO R.",
-    imageUrl: "/toga/Cuenca.JPG",
+    imageUrl: "/toga/Cuenca.webp",
     motto:
       "Living proof that debugging and drunk texting have the same success rate.",
     latinHonor: "Cum Laude",
@@ -89,182 +90,182 @@ const allStudents: Student[] = [
   },
   {
     name: "CUEVAS, RANIELLA R.",
-    imageUrl: "/toga/Cuevas.JPG",
+    imageUrl: "/toga/Cuevas.webp",
     motto: "Grind, Grind, Grind",
     itPassport: true,
   },
   {
     name: "DE CASTRO, MC LAURENCE D.",
-    imageUrl: "/toga/De Castro.JPG",
+    imageUrl: "/toga/De Castro.webp",
     motto: "The best is yet to come",
   },
   {
     name: "DE LA PEÑA, MARY ANN LEE D.",
-    imageUrl: "/toga/Dela Pena.jpeg",
+    imageUrl: "/toga/Dela Pena.webp",
     motto: "The journey doesn't end here it simply changes direction.",
   },
   {
     name: "DE LEON, MARIA ANDREA N.",
-    imageUrl: "/toga/De Leon.JPG",
-    motto: "We Came. We Learned. We\’re (Kinda) Ready.",
+    imageUrl: "/toga/De Leon.webp",
+    motto: "We Came. We Learned. We're (Kinda) Ready.",
     itPassport: true,
   },
   {
     name: "DE VILLA, SIMONE LOUIS O.",
-    imageUrl: "/toga/De Villa.JPG",
-    motto: "I have no idea what\’s next, but at least I have my diploma.",
+    imageUrl: "/toga/De Villa.webp",
+    motto: "I have no idea what's next, but at least I have my diploma.",
   },
   {
     name: "DULAY, VERONICA ANN",
-    imageUrl: "/toga/Dulay.JPG",
+    imageUrl: "/toga/Dulay.webp",
     motto: "Dare to be different",
   },
   {
     name: "EBRADO, JED ENRIQUE M.",
-    imageUrl: "/toga/Ebrado.JPG",
+    imageUrl: "/toga/Ebrado.webp",
     motto: "It is what it is. WHAT CAN YOU DO",
   },
   {
     name: "EVANGELISTA, JHON MATTHEW E.",
-    imageUrl: "/toga/Evangelista.JPG",
+    imageUrl: "/toga/Evangelista.webp",
     motto: "Time to rotate — from classrooms to careers. GGs, Class of 2025!",
     itPassport: true,
   },
   {
     name: "GARCIA, JELLO MARI C.",
-    imageUrl: "/toga/Garcia.JPG",
+    imageUrl: "/toga/Garcia.webp",
     motto: "Think outside the box",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "GUBE, DON DANIELL C.",
-    imageUrl: "/toga/Gube.JPG",
+    imageUrl: "/toga/Gube.webp",
     motto: "Leave a little sparkle wherever you go",
     itPassport: true,
   },
   {
     name: "HERNANDEZ, MARC ANDREI L.",
-    imageUrl: "/toga/Hernandez M.JPG",
+    imageUrl: "/toga/Hernandez M.webp",
     motto: "Knowledge is power",
     itPassport: true,
   },
   {
     name: "HERNANDEZ, MARK JELO M.",
-    imageUrl: "/toga/Hernandez J.JPG",
+    imageUrl: "/toga/Hernandez J.webp",
     motto: "BAHALA NA SI BATMAN",
   },
   {
     name: "ILAO, JHON KYLE P.",
-    imageUrl: "/toga/Ilao.JPG",
+    imageUrl: "/toga/Ilao.webp",
     motto: "Overthinking it so you will too...",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "KATIMBANG, CYRIL TIFFANY O.",
-    imageUrl: "/toga/Katimbang.JPG",
+    imageUrl: "/toga/Katimbang.webp",
     motto: "I can do all things through Christ who strengthens me.",
   },
   {
     name: "LATADE, PATRICK JACOB H.",
-    imageUrl: "/toga/Latade.JPG",
+    imageUrl: "/toga/Latade.webp",
     motto: "Code. Run. Error. Repeat",
     itPassport: true,
   },
   {
     name: "LOZARES, MAUREEN V.",
-    imageUrl: "/toga/Lozares.JPG",
+    imageUrl: "/toga/Lozares.webp",
     motto: "Who did? God did! I made it!",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "MAMIIT, JOHN VICTOR",
-    imageUrl: "/toga/Mamiit.JPG",
+    imageUrl: "/toga/Mamiit.webp",
     motto: "Be the light in someone's darkness",
   },
   {
     name: "MANIGBAS, QUEENIE ANGELOU V.",
-    imageUrl: "/toga/Manigbas.JPG",
+    imageUrl: "/toga/Manigbas.webp",
     motto: "Dream it, believe it, achieve it",
   },
   {
     name: "MAULEON, ARABELLA LOIS P.",
-    imageUrl: "/toga/Mauleon.JPG",
+    imageUrl: "/toga/Mauleon.webp",
     motto: "i've learned a lot, but i forgot",
   },
   {
     name: "MAYO, JOHN LORENZ Q.",
-    imageUrl: "/toga/Mayo.JPG",
+    imageUrl: "/toga/Mayo.webp",
     motto: "We are what we overcome.",
   },
   {
     name: "MEDRANO, IVAN D.",
-    imageUrl: "/toga/Medrano.JPG",
+    imageUrl: "/toga/Medrano.webp",
     motto: "until effort meets opportunity",
   },
   {
     name: "MENDOZA, HARVEY L.",
-    imageUrl: "/toga/Mendoza.JPG",
+    imageUrl: "/toga/Mendoza.webp",
     motto: "Win or Learn , Never Lose",
   },
   {
     name: "MINDANAO, ERICKA MAE C.",
-    imageUrl: "/toga/Mindanao.JPG",
+    imageUrl: "/toga/Mindanao.webp",
     motto: "Code complete. Life loading…",
   },
   {
     name: "MONTEALTO, JUAN MIGUEL M.",
-    imageUrl: "/toga/Montealto.JPG",
+    imageUrl: "/toga/Montealto.webp",
     motto: "Dum spiro, spero",
   },
   {
     name: "PLOPENIO, EDBERT P.",
-    imageUrl: "/toga/Plopenio.JPG",
+    imageUrl: "/toga/Plopenio.webp",
     motto: "May the source be with you.",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "PUNZALAN, JHONATHAN T.",
-    imageUrl: "/toga/Punzalan.JPG",
+    imageUrl: "/toga/Punzalan.webp",
     motto: "Adventure is out there",
   },
   {
     name: "REYES, MARIA BETTY R.",
-    imageUrl: "/toga/Reyes.JPG",
+    imageUrl: "/toga/Reyes.webp",
     motto: "still debugging life.",
   },
   {
     name: "SANZ, ALECKXANDER M.",
-    imageUrl: "/toga/Sanz.JPG",
+    imageUrl: "/toga/Sanz.webp",
     motto: "Proof that Googling everything can get you a degree.",
   },
   {
     name: "SILANG, L-SON F.",
-    imageUrl: "/toga/Silang.JPG",
+    imageUrl: "/toga/Silang.webp",
     motto: "SI LSON NA CLINGY KASURA?",
   },
   {
     name: "SUAREZ, IRISH LEAN C.",
-    imageUrl: "/toga/Suarez.JPG",
+    imageUrl: "/toga/Suarez.webp",
     motto: "Courage is not the absence of fear",
   },
   {
     name: "TAPALLA, CYRUS E.",
-    imageUrl: "/toga/Tapalla.JPG",
+    imageUrl: "/toga/Tapalla.webp",
     motto: "Peace Out",
     itPassport: true,
   },
   {
     name: "VALENCIA, DEXTER JAMES",
-    imageUrl: "/toga/Valencia.JPG",
+    imageUrl: "/toga/Valencia.webp",
     motto: "Ctrl + Alt + Dasal",
   },
   {
     name: "VILLANUEVA, CARLA ELIZA M.",
-    imageUrl: "/toga/Villanueva.JPG",
+    imageUrl: "/toga/Villanueva.webp",
     motto: "Optimism is the faith that leads to achievement",
     latinHonor: "Cum Laude",
     itPassport: true,
@@ -280,7 +281,6 @@ const StudentProfile: FC<StudentProfileProps> = ({
   itPassport,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="relative flex flex-col items-center justify-start text-center h-full">
@@ -290,18 +290,14 @@ const StudentProfile: FC<StudentProfileProps> = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         <Image
-          src={
-            imageError
-              ? "https://placehold.co/120x128/e2e8f0/4a5568?text=Photo"
-              : imageUrl
-          }
+          src={imageUrl}
           alt={name}
           fill
           className={`object-contain object-center transition-all duration-300 ${
-            isHovered ? "blur-sm" : ""
+            isHovered ? "blur-xs" : ""
           }`}
-          onError={() => setImageError(true)}
-          unoptimized={imageUrl.includes("placehold.co") || imageError}
+          loading="lazy"
+          quality={10}
         />
 
         {/* Motto overlay */}
@@ -318,21 +314,21 @@ const StudentProfile: FC<StudentProfileProps> = ({
 
       {/* Fixed name and achievements container with consistent height */}
       <div className="h-20 flex flex-col items-center justify-center w-full px-1">
-        <p className="text-sm font-semibold text-gray-700 leading-tight text-center mb-1">
+        <p className="text-[0.45rem] lg:text-sm font-semibold text-gray-700 leading-tight text-center mb-[1px] lg:mb-1">
           {name}
         </p>
         <div className="flex flex-col items-center space-y-1 mt-0.2">
           {latinHonor && (
-            <p className="text-[0.7rem] italic font-semibold text-[#653C12] leading-tight mb-1">
+            <p className="text-[0.40rem] lg:text-[0.7rem] italic font-semibold text-[#542e08] leading-tight mb-1">
               {latinHonor}
             </p>
           )}
           {itPassport && (
-            <p className="text-[0.65rem] italic font-semibold text-[#653C12] leading-tight">
+            <p className="text-[0.38rem] lg:text-[0.65rem] italic font-semibold text-[#653C12] leading-tight">
               IT Passport Passer
             </p>
           )}
-      </div>
+        </div>
       </div>
     </div>
   );
@@ -377,18 +373,32 @@ const Yearbook: FC = () => {
     return pages;
   }, []);
 
-  const totalPages = studentPages.length + 1;
+  const totalPages = studentPages.length + 2; // +2 for cover and back cover
 
+  // Fixed flip handler
   const handleFlip = (e: { data: number }) => {
+    console.log("Page flipped to:", e.data);
     setCurrentPage(e.data);
   };
 
   const goToPrevPage = () => {
-    bookRef.current?.pageFlip().flipPrev();
+    if (bookRef.current?.pageFlip && currentPage > 0) {
+      try {
+        bookRef.current.pageFlip().flipPrev();
+      } catch (error) {
+        console.error("Error flipping to previous page:", error);
+      }
+    }
   };
 
   const goToNextPage = () => {
-    bookRef.current?.pageFlip().flipNext();
+    if (bookRef.current?.pageFlip && currentPage < totalPages - 1) {
+      try {
+        bookRef.current.pageFlip().flipNext();
+      } catch (error) {
+        console.error("Error flipping to next page:", error);
+      }
+    }
   };
 
   return (
@@ -427,9 +437,12 @@ const Yearbook: FC = () => {
             maxShadowOpacity={0.8}
             showCover={true}
             mobileScrollSupport={true}
-            onFlip={handleFlip}
+            swipeDistance={10}
             ref={bookRef}
             className="mx-auto scale-90 lg:scale-100"
+            onFlip={handleFlip}
+            onChangeOrientation={() => console.log("Orientation changed")}
+            onChangeState={(e: any) => console.log("State changed:", e)}
           >
             {/* Cover Page */}
             <Page number={0}>
@@ -438,10 +451,10 @@ const Yearbook: FC = () => {
                   <Image
                     src="/images/classpic.webp"
                     alt="School Logo"
-                    width={300} // Add appropriate width
-                    height={200} // Add appropriate height
+                    width={300}
+                    height={200}
                     className="w-full h-auto mb-4"
-                    priority // Optional: if this is above the fold
+                    priority
                   />
                 </div>
                 <h2
@@ -473,7 +486,7 @@ const Yearbook: FC = () => {
             ))}
 
             {/* Back Cover */}
-            <Page number={totalPages}>
+            <Page number={totalPages - 1}>
               <div className="flex flex-col items-center justify-center h-full bg-red-800 text-white">
                 <h2
                   className="text-4xl font-bold mb-4"
@@ -502,11 +515,11 @@ const Yearbook: FC = () => {
         {/* Left Button */}
         <button
           onClick={goToPrevPage}
-          className="transition-all disabled:opacity-50 hover:scale-100 cursor-pointer"
+          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
           disabled={currentPage === 0 || !isClient}
         >
           <img
-            src="/images/arrow.png" // adjust path to match your public folder
+            src="/images/arrow.png"
             alt="Previous"
             className="w-10 h-10 rotate-[-135deg]"
           />
@@ -514,13 +527,14 @@ const Yearbook: FC = () => {
 
         {/* Page Count */}
         <div className="text-[#FAF3E0] text-lg font-medium">
-          Page {currentPage} of {totalPages}
+          Page {currentPage + 1} of {totalPages}
         </div>
 
         {/* Right Button */}
         <button
           onClick={goToNextPage}
           className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
+          disabled={currentPage >= totalPages - 1 || !isClient}
         >
           <img
             src="/images/arrow.png"
