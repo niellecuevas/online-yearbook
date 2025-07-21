@@ -741,7 +741,6 @@ const Messages: React.FC = () => {
           )}
         </div>
       </PopUp>
-
     </div>
   );
 };
