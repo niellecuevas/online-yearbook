@@ -285,7 +285,7 @@ const Messages: React.FC = () => {
           const existingMsgData = existingMsg.data() as Message;
 
           showConfirmation(
-            "You already submitted a message. Do you want to edit it nanaman?",
+            "I still have your last message. Would you like to edit it?",
             () => {
               setIsEditMode(true);
               setMessage(existingMsgData.message);
@@ -301,7 +301,7 @@ const Messages: React.FC = () => {
 
         await proceedWithOTP(email, fetchedName);
       } else {
-        showStatus("error", "SR code not found.bkadikapasa");
+        showStatus("error", "SR code not found.");
       }
     } catch (err) {
       console.error("Error sending OTP:", err);
@@ -422,10 +422,7 @@ const Messages: React.FC = () => {
 
   const handleModalClose = (): void => {
     if (isOtpSent || isOtpVerified || message.trim()) {
-      showConfirmation(
-        "Are you sure you want to close? Your progress will be lost.",
-        resetModal
-      );
+      showConfirmation("I'll lose your progress if you leave now.", resetModal);
     } else {
       resetModal();
     }
@@ -518,7 +515,15 @@ const Messages: React.FC = () => {
       <div className="left-0 right-0 bg-black/80 py-3 backdrop-blur-sm">
         <div className="flex justify-center items-center gap-2">
           <button
-            onClick={goToPrevPage}
+            onClick={() => {
+              goToPrevPage();
+              setTimeout(() => {
+                document.getElementById("messages")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }, 50);
+            }}
             disabled={currentPage === 0}
             className="p-1.5 disabled:opacity-30 cursor-pointer"
           >
@@ -552,8 +557,13 @@ const Messages: React.FC = () => {
               return (
                 <button
                   key={pageNum}
-                  onClick={() => goToPage(pageNum)}
-                  className={`w-7 h-7 text-xs rounded ${
+                  onClick={() => {
+                    goToPage(pageNum);
+                    document
+                      .getElementById("messages")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={`w-7 h-7 text-xs rounded cursor-pointer ${
                     currentPage === pageNum
                       ? "bg-amber-400 text-black"
                       : "text-amber-100 hover:bg-white/10"
@@ -566,7 +576,15 @@ const Messages: React.FC = () => {
           </div>
 
           <button
-            onClick={goToNextPage}
+            onClick={() => {
+              goToNextPage();
+              setTimeout(() => {
+                document.getElementById("messages")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }, 50);
+            }}
             disabled={currentPage === pageCount - 1}
             className="p-1.5 disabled:opacity-30 cursor-pointer"
           >
@@ -628,7 +646,7 @@ const Messages: React.FC = () => {
                     value={srCode}
                     onChange={(e) => setSrCode(e.target.value)}
                     placeholder="e.g. 21-00001"
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#008d69] focus:border-[#008d69] outline-none transition-all"
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-none outline-none transition-all"
                     disabled={isLoading}
                     onKeyPress={(e) => handleKeyPress(e, handleSRSubmit)}
                   />
@@ -643,7 +661,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={handleSRSubmit}
                       disabled={isLoading}
-                      className="bg-amber-500 text-white px-6 py-2 rounded-lg hover:bg-amber-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                      className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
                     >
                       {isLoading && <LoadingSpinner size="sm" />}
                       Send OTP
@@ -659,7 +677,7 @@ const Messages: React.FC = () => {
                     value={enteredOtp}
                     onChange={(e) => setEnteredOtp(e.target.value)}
                     placeholder="6-digit OTP"
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all text-center text-lg font-mono"
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-600 outline-none transition-all text-center text-lg font-mono"
                     maxLength={6}
                     disabled={isLoading}
                     onKeyPress={(e) => handleKeyPress(e, handleOtpVerify)}
@@ -678,7 +696,7 @@ const Messages: React.FC = () => {
                     <button
                       onClick={handleOtpVerify}
                       disabled={isLoading}
-                      className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto cursor-pointer"
+                      className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto cursor-pointer"
                     >
                       {isLoading && <LoadingSpinner size="sm" />}
                       Verify OTP
@@ -711,7 +729,7 @@ const Messages: React.FC = () => {
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Write your message here..."
                       rows={4}
-                      className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"
+                      className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-[#005a43] focus:border-[#008d69] outline-none transition-all"
                       disabled={isLoading}
                     />
                   </div>
