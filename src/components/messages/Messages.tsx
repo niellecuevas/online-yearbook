@@ -301,7 +301,7 @@ const Messages: React.FC = () => {
 
         await proceedWithOTP(email, fetchedName);
       } else {
-        showStatus("error", "SR code not found.");
+        showStatus("error", "Code not recognized. For our section buddies only! 💛");
       }
     } catch (err) {
       console.error("Error sending OTP:", err);
