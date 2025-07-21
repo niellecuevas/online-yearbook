@@ -511,100 +511,56 @@ const Messages: React.FC = () => {
           ))}
       </div>
 
-      {/* Pagination - Fixed at Bottom */}
-      <div className="left-0 right-0 bg-black/80 py-3 backdrop-blur-sm">
-        <div className="flex justify-center items-center gap-2">
-          <button
-            onClick={() => {
-              goToPrevPage();
-              setTimeout(() => {
-                document.getElementById("messages")?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
-              }, 50);
-            }}
-            disabled={currentPage === 0}
-            className="p-1.5 disabled:opacity-30 cursor-pointer"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+    {/* Pagination Controls with Image Buttons */}
+    <div className="mt-8 flex items-center justify-center gap-6">
+      {/* Previous Button */}
+      <button
+        onClick={() => {
+          goToPrevPage();
+          setTimeout(() => {
+            document.getElementById("messages")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }, 50);
+        }}
+        disabled={currentPage === 0}
+        className="transition-all disabled:opacity-50 hover:scale-105"
+      >
+        <img
+          src="/images/arrow.png"
+          alt="Previous"
+          className="w-10 h-10 rotate-[-135deg]"
+        />
+      </button>
 
-          <div className="flex gap-1">
-            {Array.from({ length: Math.min(5, pageCount) }).map((_, i) => {
-              const pageNum =
-                pageCount <= 5
-                  ? i
-                  : currentPage < 2
-                  ? i
-                  : currentPage > pageCount - 3
-                  ? pageCount - 5 + i
-                  : currentPage - 2 + i;
-
-              return (
-                <button
-                  key={pageNum}
-                  onClick={() => {
-                    goToPage(pageNum);
-                    document
-                      .getElementById("messages")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className={`w-7 h-7 text-xs rounded cursor-pointer ${
-                    currentPage === pageNum
-                      ? "bg-amber-400 text-black"
-                      : "text-amber-100 hover:bg-white/10"
-                  }`}
-                >
-                  {pageNum + 1}
-                </button>
-              );
-            })}
-          </div>
-
-          <button
-            onClick={() => {
-              goToNextPage();
-              setTimeout(() => {
-                document.getElementById("messages")?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
-              }, 50);
-            }}
-            disabled={currentPage === pageCount - 1}
-            className="p-1.5 disabled:opacity-30 cursor-pointer"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+      {/* Page Count */}
+      <div className="text-[#FAF3E0] text-lg font-medium">
+        Chalkboard {currentPage + 1} 
       </div>
+
+      {/* Next Button */}
+      <button
+        onClick={() => {
+          goToNextPage();
+          setTimeout(() => {
+            document.getElementById("messages")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }, 50);
+        }}
+        disabled={currentPage === pageCount - 1}
+        className="transition-all disabled:opacity-50 hover:scale-105"
+      >
+        <img
+          src="/images/arrow.png"
+          alt="Next"
+          className="w-10 h-10 rotate-[45deg]"
+        />
+      </button>
+    </div>
+
 
       {/* Unified Modal */}
       <PopUp isOpen={showModal} onClose={handleModalClose}>

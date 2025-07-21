@@ -502,7 +502,7 @@ const Yearbook: FC = () => {
         {/* Left Button */}
         <button
           onClick={goToPrevPage}
-          className="transition-all disabled:opacity-50 hover:scale-100"
+          className="transition-all disabled:opacity-50 hover:scale-100 cursor-pointer"
           disabled={currentPage === 0 || !isClient}
         >
           <img
@@ -520,7 +520,7 @@ const Yearbook: FC = () => {
         {/* Right Button */}
         <button
           onClick={goToNextPage}
-          className="transition-all disabled:opacity-50 hover:scale-105"
+          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
         >
           <img
             src="/images/arrow.png"
