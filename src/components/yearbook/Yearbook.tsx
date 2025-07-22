@@ -406,7 +406,7 @@ const Yearbook: FC = () => {
       id="yearbook"
       className="bg-[radial-gradient(ellipse_at_top_center,_#d27532,_#8b4513)] min-h-screen w-full flex flex-col justify-center items-center p-4 font-sans"
     >
-      <div className="text-center pt-20">
+      <div className="text-center pt-10 lg:pt-20">
         <h1
           className="text-5xl font-bold text-[#FFF8E7] tracking-wider"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -418,7 +418,7 @@ const Yearbook: FC = () => {
         <hr className="w-16 border-t-2 border-[#F8B259] mx-auto my-4" />
 
         {/* Subtitle */}
-        <h2 className="text-center text-[1.2rem] text-[#FAF3E0] italic mb-12 max-w-[600px] mx-auto py-5">
+        <h2 className="text-center text-[0.9rem] lg:text-[1.2rem] px-5 text-[#FAF3E0] italic mb-0 lg:mb-12 max-w-[600px] mx-auto py-5">
           Like a system upgraded over time, our bond has evolved—tested by bugs,
           refined by memories, and now ready to run in the real world.
         </h2>

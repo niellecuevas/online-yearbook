@@ -572,103 +572,82 @@ const Messages: React.FC = () => {
     return () => unsub();
   }, []);
 
-  return (
-    <div
-      id="messages"
-      className="relative w-full min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
-      style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
-    >
-      {/* Header */}
-      <div className="text-center mb-6">
-        <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white">
-          Echoes of 02
-        </h1>
-        <button
-          className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl cursor-pointer"
-          onClick={() => setShowModal(true)}
-        >
-          ✍️ Write on Chalkboard
-        </button>
-      </div>
+  // Function to distribute messages evenly across columns based on content length
+const distributeMessages = (messages) => {
+  const columns = [[], [], []];
+  const columnHeights = [0, 0, 0];
+  
+  messages.forEach((msg) => {
+    // Estimate message height based on content length
+    const estimatedHeight = Math.max(100, msg.message.length * 0.8 + msg.name.length * 0.5 + 80);
+    
+    // Find the column with the least total height
+    const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+    
+    // Add message to the shortest column
+    columns[shortestColumnIndex].push(msg);
+    columnHeights[shortestColumnIndex] += estimatedHeight;
+  });
+  
+  return columns;
+};
 
-      {/* Messages Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 mb-16 ">
-        {paginatedMessages.map((msg, i) => (
-          <div
-            key={i}
-            className="break-inside-avoid p-4 px-10 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
-          >
-            <div className={`italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-thin scrollbar-thumb-[#FAF3E0]/30 scrollbar-track-transparent ${getFontClassName(msg.font || "chalk")}`}>
-              "{msg.message}"
-            </div>
-            <div className={`text-right text-sm text-amber-500 mt-2 ${getFontClassName(msg.font || "chalk")}`}>
-              — {msg.name}
-            </div>
-          </div>
-        ))}
+return (
+  <div
+    id="messages"
+    className="relative w-full min-h-screen px-10 py-12 bg-cover bg-center text-white font-[CreamyChalk]"
+    style={{ backgroundImage: "url('/images/chalkboard.jpg')" }}
+  >
+    {/* Header */}
+    <div className="text-center mb-6">
+      <h1 className="text-6xl font-bold text-center pt-5 mb-10 text-white">
+        Echoes of 02
+      </h1>
+      <button
+        className="bg-amber-400 hover:bg-amber-500 text-black font-semibold py-2 px-6 rounded-md mx-auto block shadow-lg transition-all duration-200 hover:shadow-xl cursor-pointer"
+        onClick={() => setShowModal(true)}
+      >
+        ✍️ Write on Chalkboard
+      </button>
+    </div>
 
-        {/* Fill empty slots */}
-        {paginatedMessages.length < messagesPerPage &&
-          Array.from({
-            length: messagesPerPage - paginatedMessages.length,
-          }).map((_, i) => (
+    {/* Balanced Content Grid - 3 Columns */}
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 mb-16 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[#FAF3E0]/30 scrollbar-track-transparent">
+      {distributeMessages(messages).map((columnMessages, columnIndex) => (
+        <div key={columnIndex} className="space-y-4">
+          {columnMessages.map((msg, i) => (
             <div
-              key={`empty-${i}`}
-              className="p-3 rounded-lg border border-dashed border-white/5"
-            ></div>
+              key={`col-${columnIndex}-msg-${i}`}
+              className="p-4 px-6 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300 bg-black/10"
+            >
+              <div className={`italic text-[#FAF3E0] leading-relaxed ${getFontClassName(msg.font || "chalk")}`}>
+                "{msg.message}"
+              </div>
+              <div className={`text-right text-sm text-amber-500 mt-3 ${getFontClassName(msg.font || "chalk")}`}>
+                — {msg.name}
+              </div>
+            </div>
           ))}
-      </div>
-
-      {/* Pagination Controls with Image Buttons */}
-      <div className="mt-8 flex items-center justify-center gap-6">
-        {/* Previous Button */}
-        <button
-          onClick={() => {
-            goToPrevPage();
-            setTimeout(() => {
-              document.getElementById("messages")?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }, 50);
-          }}
-          disabled={currentPage === 0}
-          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
-        >
-          <img
-            src="/images/arrow.png"
-            alt="Previous"
-            className="w-10 h-10 rotate-[-135deg]"
-          />
-        </button>
-
-        {/* Page Count */}
-        <div className="text-[#FAF3E0] text-lg font-medium">
-          Chalkboard {currentPage + 1} 
         </div>
+      ))}
+    </div>
 
-        {/* Next Button */}
-        <button
-          onClick={() => {
-            goToNextPage();
-            setTimeout(() => {
-              document.getElementById("messages")?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }, 50);
-          }}
-          disabled={currentPage === pageCount - 1}
-          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
-        >
-          <img
-            src="/images/arrow.png"
-            alt="Next"
-            className="w-10 h-10 rotate-[45deg]"
-          />
-        </button>
+    
+    {isLoading && (
+      <div className="text-center py-8">
+        <div className="text-[#FAF3E0] text-lg">Loading more messages...</div>
       </div>
+    )}
 
+
+    {messages.length > 0 && !isLoading && (
+      <div className="text-center py-8">
+        <div className="text-[#FAF3E0]/60 text-sm italic">
+          ~ End of chalkboard memories ~
+        </div>
+      </div>
+    )}
+  
       {/* Unified Modal */}
       <PopUp isOpen={showModal} onClose={handleModalClose}>
         <div className="p-6 space-y-4">
