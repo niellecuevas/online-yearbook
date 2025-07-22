@@ -198,7 +198,7 @@ const allStudents: Student[] = [
   {
     name: "MAYO, JOHN LORENZ Q.",
     imageUrl: "/toga/Mayo.webp",
-    motto: "30/30 rule; 30 mins code, 30 days pahinga",
+    motto: "We are what we overcome.",
   },
   {
     name: "MEDRANO, IVAN D.",
@@ -306,7 +306,7 @@ const StudentProfile: FC<StudentProfileProps> = ({
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          <p className="text-white text-sm font-semibold text-center leading-tight drop-shadow-lg bg-[#8B4513]/90 bg-opacity-70 p-2 rounded">
+          <p className="select-none text-white text-sm font-semibold text-center leading-tight drop-shadow-lg bg-[#8B4513]/90 bg-opacity-70 p-2 rounded">
             "{motto}"
           </p>
         </div>
@@ -404,7 +404,7 @@ const Yearbook: FC = () => {
   return (
     <div
       id="yearbook"
-      className="bg-[radial-gradient(ellipse_at_top_center,_#d27532,_#8b4513)] min-h-screen w-full flex flex-col justify-center items-center p-4 font-sans"
+      className="select-none bg-[radial-gradient(ellipse_at_top_center,_#d27532,_#8b4513)] min-h-screen w-full flex flex-col justify-center items-center p-4 font-sans"
     >
       <div className="text-center pt-10 lg:pt-20">
         <h1

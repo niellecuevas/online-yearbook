@@ -7,7 +7,7 @@ import VideoBanner from "@/components/videobanner/Videobanner";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center justify-center bg-[#02000D] text-white overflow-hidden">
+    <div className="select-none relative flex flex-col items-center justify-center bg-[#02000D] text-white overflow-hidden">
       <div className="w-full">
         <VideoBanner
         videoId="5YNaUd_zc0k" 
