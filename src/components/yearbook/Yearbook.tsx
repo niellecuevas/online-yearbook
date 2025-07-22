@@ -4,7 +4,6 @@ import React, { useState, useRef, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import type { FC, ReactNode, ForwardedRef } from "react";
 import Image from "next/image";
-import { FaceSmileIcon } from "@heroicons/react/24/solid";
 
 // --- TYPE DEFINITIONS ---
 interface Student {
@@ -437,7 +436,7 @@ const Yearbook: FC = () => {
             maxHeight={900}
             maxShadowOpacity={0.8}
             showCover={true}
-            mobileScrollSupport={false}
+            mobileScrollSupport={true}
             swipeDistance={10}
             ref={bookRef}
             className="mx-auto scale-90 lg:scale-100"
