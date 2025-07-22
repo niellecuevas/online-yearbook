@@ -47,7 +47,7 @@ const allStudents: Student[] = [
   {
     name: "AGOJO, JILLIAN GAYLE M.",
     imageUrl: "/toga/Agojo.webp",
-    motto: "Dream big, work hard",
+    motto: " ",
   },
   {
     name: "AGUILAR, ASHERA KATHRYN R.",
@@ -71,12 +71,12 @@ const allStudents: Student[] = [
   {
     name: "BAUTISTA, CHRIS JOHN L.",
     imageUrl: "/toga/Bautista.webp",
-    motto: "Adventure awaits around every corner",
+    motto: "The sail ends, the journey was worthwhile, but life has yet to begin",
   },
   {
     name: "COMIA, MARIA ANDREA M.",
     imageUrl: "/toga/Comia.webp",
-    motto: "Create your own sunshine",
+    motto: "final output > emotional stability",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
@@ -84,20 +84,20 @@ const allStudents: Student[] = [
     name: "CUENCA, KIM PAOLO R.",
     imageUrl: "/toga/Cuenca.webp",
     motto:
-      "Living proof that debugging and drunk texting have the same success rate.",
+      "Behind my smile, there's a teeth",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
   {
     name: "CUEVAS, RANIELLA R.",
     imageUrl: "/toga/Cuevas.webp",
-    motto: "Grind, Grind, Grind",
+    motto: "Keep on grinding",
     itPassport: true,
   },
   {
     name: "DE CASTRO, MC LAURENCE D.",
     imageUrl: "/toga/De Castro.webp",
-    motto: "The best is yet to come",
+    motto: "When the time is right, the lord will make it happen.",
   },
   {
     name: "DE LA PEÑA, MARY ANN LEE D.",
@@ -118,7 +118,7 @@ const allStudents: Student[] = [
   {
     name: "DULAY, VERONICA ANN",
     imageUrl: "/toga/Dulay.webp",
-    motto: "Dare to be different",
+    motto: " ",
   },
   {
     name: "EBRADO, JED ENRIQUE M.",
@@ -128,13 +128,13 @@ const allStudents: Student[] = [
   {
     name: "EVANGELISTA, JHON MATTHEW E.",
     imageUrl: "/toga/Evangelista.webp",
-    motto: "Time to rotate — from classrooms to careers. GGs, Class of 2025!",
+    motto: "Time to rotate — from classrooms to careers. GGs",
     itPassport: true,
   },
   {
     name: "GARCIA, JELLO MARI C.",
     imageUrl: "/toga/Garcia.webp",
-    motto: "Think outside the box",
+    motto: " ",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
@@ -147,7 +147,7 @@ const allStudents: Student[] = [
   {
     name: "HERNANDEZ, MARC ANDREI L.",
     imageUrl: "/toga/Hernandez M.webp",
-    motto: "Knowledge is power",
+    motto: " ",
     itPassport: true,
   },
   {
@@ -183,22 +183,22 @@ const allStudents: Student[] = [
   {
     name: "MAMIIT, JOHN VICTOR",
     imageUrl: "/toga/Mamiit.webp",
-    motto: "Be the light in someone's darkness",
+    motto: "nothing beats a jet 2 holidays",
   },
   {
     name: "MANIGBAS, QUEENIE ANGELOU V.",
     imageUrl: "/toga/Manigbas.webp",
-    motto: "Dream it, believe it, achieve it",
+    motto: " ",
   },
   {
     name: "MAULEON, ARABELLA LOIS P.",
     imageUrl: "/toga/Mauleon.webp",
-    motto: "i've learned a lot, but i forgot",
+    motto: "If tomorrow isn't the due date, today isn't the do date ",
   },
   {
     name: "MAYO, JOHN LORENZ Q.",
     imageUrl: "/toga/Mayo.webp",
-    motto: "We are what we overcome.",
+    motto: "30/30 rule; 30 mins code, 30 days pahinga",
   },
   {
     name: "MEDRANO, IVAN D.",
@@ -230,7 +230,7 @@ const allStudents: Student[] = [
   {
     name: "PUNZALAN, JHONATHAN T.",
     imageUrl: "/toga/Punzalan.webp",
-    motto: "Adventure is out there",
+    motto: " ",
   },
   {
     name: "REYES, MARIA BETTY R.",
@@ -250,7 +250,7 @@ const allStudents: Student[] = [
   {
     name: "SUAREZ, IRISH LEAN C.",
     imageUrl: "/toga/Suarez.webp",
-    motto: "Courage is not the absence of fear",
+    motto: " ",
   },
   {
     name: "TAPALLA, CYRUS E.",
@@ -266,7 +266,7 @@ const allStudents: Student[] = [
   {
     name: "VILLANUEVA, CARLA ELIZA M.",
     imageUrl: "/toga/Villanueva.webp",
-    motto: "Optimism is the faith that leads to achievement",
+    motto: "This session has ended. Please upgrade to continue using ChatGPT.",
     latinHonor: "Cum Laude",
     itPassport: true,
   },
