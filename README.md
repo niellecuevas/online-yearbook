@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 The 02 Files: Our Digital Yearbook
 
-## Getting Started
+A special keepsake for **Batangas State University - The National Engineering University - Lipa Campus BSIT-BA 02** — complete with a video to look back on, a chalkboard for heartfelt messages, and a flipbook to remember every one of us.
 
-First, run the development server:
+🌐 [www.the02files.site](http://www.the02files.site)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📹 **Video Banner** – Relive our memories in motion.
+- ✏️ **Chalkboard Message Wall** – Leave your personal message with **OTP verification** and **customizable fonts**.
+- 🔁 **Edit-Friendly** – Change your message anytime by re-verifying with a new OTP.
+- 📖 **Interactive Flipbook** – Flip through our yearbook like a real one, featuring each classmate.
+- 🎨 **Modern, Responsive UI** – Designed to feel sleek and special on any device.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js** (App Router)
+- **Firebase Firestore** – Data storage for messages and OTPs
+- **EmailJS** – Email-based OTP verification
+- **Tailwind CSS** – Utility-first styling
+- **TypeScript** – Type safety and better DX
+- **Vercel** – Deployment and hosting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🙌 Team Credits
 
-## Deploy on Vercel
+> Proudly built by and for **BSIT-BA 02** 💛
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🧠 **Concept** – Maureen Lozares & Raniella Cuevas 
+- 📋 **Project Manager** – Maureen Lozares  
+- 💻 **Fullstack Developers** – Raniella Cuevas, John Lorenz Mayo & Maureen Lozares   
+- 🎨 **Frontend Developers** – Ivan Medrano & Don Daniell Gube  
+- 🎞️ **Video Editor** – Ashera Kathreen Aguilar  
+- ✍️ **Content & Texts** – Maria Andrea Comia  
+- 🌟 **Special Thanks** – To every classmate who made this possible. This wouldn’t be the same without you.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔐 License
+
+This project is for **personal and educational use only**.  
+All media and content belong to **BSIT-BA 02**, BatStateU 2025.
+
+---
+
+📚 *“Backed Up: The 02 Files” is more than a yearbook — it’s a time capsule we made together.*
+
