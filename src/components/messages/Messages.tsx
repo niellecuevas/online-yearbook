@@ -25,6 +25,7 @@ interface Message {
   message: string;
   createdAt: Timestamp;
   updatedAt?: Timestamp;
+  font?: string; // Added font property
 }
 
 interface Student {
@@ -39,6 +40,53 @@ interface StatusMessage {
   isVisible: boolean;
 }
 
+interface FontOption {
+  name: string;
+  value: string;
+  className: string;
+  preview: string;
+}
+
+// Font options array
+const FONT_OPTIONS: FontOption[] = [
+  {
+    name: "Chalk Script",
+    value: "chalk",
+    className: "font-[CreamyChalk]",
+    preview: "Nostalgic chalk writing"
+  },
+  {
+    name: "Better Sweet",
+    value: "handwriting",
+    className: "font-[BetterSweet]",
+    preview: "Personal handwritten style"
+  },
+  {
+    name: "Bright Chalk",
+    value: "script",
+    className: "font-[BrightChalk]",
+    preview: "Bright Handwriting"
+  },
+  {
+    name: "Chalk Clouds",
+    value: "mono",
+    className: "font-[ChalkClouds]",
+    preview: "Cursive Personal Handwriting"
+  },
+  {
+    name: "Cute Chalk",
+    value: "sans",
+    className: "font-[CuteChalk]",
+    preview: "Cute Handwriting Stuff"
+  },
+  {
+    name: "Capital Chalky",
+    value: "serif",
+    className: "font-[EraserDust]",
+    preview: "Capital chalky font"
+  }
+];
+
 // Unified PopUp Component
 interface PopUpProps {
   isOpen: boolean;
@@ -51,8 +99,56 @@ const PopUp: React.FC<PopUpProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4">
-      <div className="bg-white text-black rounded-xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100">
+      <div className="bg-white text-black rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-100">
         {children}
+      </div>
+    </div>
+  );
+};
+
+// Font Selector Component
+interface FontSelectorProps {
+  selectedFont: string;
+  onFontChange: (font: string) => void;
+  previewText: string;
+}
+
+const FontSelector: React.FC<FontSelectorProps> = ({ 
+  selectedFont, 
+  onFontChange, 
+  previewText 
+}) => {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm text-gray-600 mb-2 font-medium">
+        Choose Font Style ✨
+      </label>
+      <div className="space-y-2 max-h-48 overflow-y-auto border rounded-lg p-2">
+        {FONT_OPTIONS.map((font) => (
+          <label
+            key={font.value}
+            className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-50 ${
+              selectedFont === font.value ? 'bg-blue-50 border-blue-200' : 'border border-gray-200'
+            }`}
+          >
+            <input
+              type="radio"
+              name="font"
+              value={font.value}
+              checked={selectedFont === font.value}
+              onChange={(e) => onFontChange(e.target.value)}
+              className="mr-3"
+            />
+            <div className="flex-1">
+              <div className="font-medium text-sm text-gray-800">
+                {font.name}
+              </div>
+              <div className={`text-gray-600 text-sm mt-1 ${font.className}`}>
+                {previewText || font.preview}
+              </div>
+            </div>
+          </label>
+        ))}
       </div>
     </div>
   );
@@ -178,6 +274,7 @@ const Messages: React.FC = () => {
   const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
   const [isOtpVerified, setIsOtpVerified] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [selectedFont, setSelectedFont] = useState<string>("chalk"); // Default font
   const [messages, setMessages] = useState<Message[]>([]);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [editingDocId, setEditingDocId] = useState<string>("");
@@ -192,7 +289,7 @@ const Messages: React.FC = () => {
   const [confirmCallback, setConfirmCallback] = useState<(() => void) | null>(
     null
   );
-  const [currentPage, setCurrentPage] = useState<number>(0); // New state for pagination
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const generateOtp = (): string =>
     Math.floor(100000 + Math.random() * 900000).toString();
@@ -205,6 +302,12 @@ const Messages: React.FC = () => {
     currentPage * messagesPerPage,
     (currentPage + 1) * messagesPerPage
   );
+
+  // Helper function to get font class from font value
+  const getFontClassName = (fontValue: string): string => {
+    const fontOption = FONT_OPTIONS.find(f => f.value === fontValue);
+    return fontOption?.className || "font-[CreamyChalk]";
+  };
 
   const showStatus = (
     type: StatusMessage["type"],
@@ -244,6 +347,7 @@ const Messages: React.FC = () => {
     setEnteredOtp("");
     setMessage("");
     setName("");
+    setSelectedFont("chalk"); // Reset font selection
     setIsOtpSent(false);
     setSrCode("");
     setIsEditMode(false);
@@ -289,6 +393,7 @@ const Messages: React.FC = () => {
             () => {
               setIsEditMode(true);
               setMessage(existingMsgData.message);
+              setSelectedFont(existingMsgData.font || "chalk"); // Load existing font
               setEditingDocId(existingMsg.id);
               setName(fetchedName);
               setStudentEmail(email);
@@ -395,6 +500,7 @@ const Messages: React.FC = () => {
       if (isEditMode) {
         await updateDoc(doc(db, "messages", editingDocId), {
           message,
+          font: selectedFont, // Save selected font
           updatedAt: Timestamp.now(),
         });
         showStatus("success", "Message updated successfully!");
@@ -403,6 +509,7 @@ const Messages: React.FC = () => {
           srCode,
           name,
           message,
+          font: selectedFont, // Save selected font
           createdAt: Timestamp.now(),
         });
         showStatus("success", "Message sent successfully! 🎉");
@@ -455,6 +562,7 @@ const Messages: React.FC = () => {
           srCode: data.srCode,
           name: data.name,
           message: data.message,
+          font: data.font || "chalk", // Default to chalk if no font saved
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
         } as Message;
@@ -484,16 +592,16 @@ const Messages: React.FC = () => {
       </div>
 
       {/* Messages Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 mb-16 ">
         {paginatedMessages.map((msg, i) => (
           <div
             key={i}
             className="break-inside-avoid p-4 px-10 rounded-xl text-white shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-thin scrollbar-thumb-[#FAF3E0]/30 scrollbar-track-transparent">
+            <div className={`italic max-h-40 overflow-y-auto pr-1 text-[#FAF3E0] scrollbar-thin scrollbar-thumb-[#FAF3E0]/30 scrollbar-track-transparent ${getFontClassName(msg.font || "chalk")}`}>
               "{msg.message}"
             </div>
-            <div className="text-right text-sm text-amber-500 mt-2">
+            <div className={`text-right text-sm text-amber-500 mt-2 ${getFontClassName(msg.font || "chalk")}`}>
               — {msg.name}
             </div>
           </div>
@@ -511,56 +619,55 @@ const Messages: React.FC = () => {
           ))}
       </div>
 
-    {/* Pagination Controls with Image Buttons */}
-    <div className="mt-8 flex items-center justify-center gap-6">
-      {/* Previous Button */}
-      <button
-        onClick={() => {
-          goToPrevPage();
-          setTimeout(() => {
-            document.getElementById("messages")?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }, 50);
-        }}
-        disabled={currentPage === 0}
-        className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
-      >
-        <img
-          src="/images/arrow.png"
-          alt="Previous"
-          className="w-10 h-10 rotate-[-135deg]"
-        />
-      </button>
+      {/* Pagination Controls with Image Buttons */}
+      <div className="mt-8 flex items-center justify-center gap-6">
+        {/* Previous Button */}
+        <button
+          onClick={() => {
+            goToPrevPage();
+            setTimeout(() => {
+              document.getElementById("messages")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }, 50);
+          }}
+          disabled={currentPage === 0}
+          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
+        >
+          <img
+            src="/images/arrow.png"
+            alt="Previous"
+            className="w-10 h-10 rotate-[-135deg]"
+          />
+        </button>
 
-      {/* Page Count */}
-      <div className="text-[#FAF3E0] text-lg font-medium">
-        Chalkboard {currentPage + 1} 
+        {/* Page Count */}
+        <div className="text-[#FAF3E0] text-lg font-medium">
+          Chalkboard {currentPage + 1} 
+        </div>
+
+        {/* Next Button */}
+        <button
+          onClick={() => {
+            goToNextPage();
+            setTimeout(() => {
+              document.getElementById("messages")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }, 50);
+          }}
+          disabled={currentPage === pageCount - 1}
+          className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
+        >
+          <img
+            src="/images/arrow.png"
+            alt="Next"
+            className="w-10 h-10 rotate-[45deg]"
+          />
+        </button>
       </div>
-
-      {/* Next Button */}
-      <button
-        onClick={() => {
-          goToNextPage();
-          setTimeout(() => {
-            document.getElementById("messages")?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }, 50);
-        }}
-        disabled={currentPage === pageCount - 1}
-        className="transition-all disabled:opacity-50 hover:scale-105 cursor-pointer"
-      >
-        <img
-          src="/images/arrow.png"
-          alt="Next"
-          className="w-10 h-10 rotate-[45deg]"
-        />
-      </button>
-    </div>
-
 
       {/* Unified Modal */}
       <PopUp isOpen={showModal} onClose={handleModalClose}>
@@ -676,6 +783,7 @@ const Messages: React.FC = () => {
                       className="w-full p-3 border rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
                     />
                   </div>
+
                   <div>
                     <label className="block text-sm text-gray-600 mb-2 font-medium">
                       Message
@@ -685,10 +793,27 @@ const Messages: React.FC = () => {
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Write your message here..."
                       rows={4}
-                      className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-[#005a43] focus:border-[#008d69] outline-none transition-all"
+                      className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-[#005a43] focus:border-[#008d69] outline-none transition-all font-sans"
                       disabled={isLoading}
                     />
                   </div>
+
+                  {/* Font Selector */}
+                  <FontSelector 
+                    selectedFont={selectedFont}
+                    onFontChange={setSelectedFont}
+                    previewText={message || "Your message will look like this"}
+                  />
+
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-2 font-medium">
+                      Message Preview
+                    </label>
+                    <div className={`w-full p-3 border rounded-lg bg-gray-50 min-h-[100px] text-gray-800 ${getFontClassName(selectedFont)}`}>
+                      {message || "Start typing to see your message in the selected font..."}
+                    </div>
+                  </div>
+
                   <div className="flex gap-3 pt-2">
                     <button
                       onClick={() => {

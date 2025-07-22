@@ -23,6 +23,39 @@ const CreamyChalk = localFont({
   display: 'swap',
 })
 
+const BetterSweet = localFont({
+  src: '../../public/fonts/BetterSweet.ttf', // Adjust path as needed
+  variable: '--better-sweet-font',
+  display: 'swap',
+})
+
+const BrightChalk = localFont({
+  src: '../../public/fonts/BrightChalk.ttf', // Adjust path as needed
+  variable: '--bright-chalk-font',
+  display: 'swap',
+})
+
+const ChalkClouds = localFont({
+  src: '../../public/fonts/ChalkClouds.ttf', // Adjust path as needed
+  variable: '--chalk-clouds-font',
+  display: 'swap',
+})
+
+const CuteChalk = localFont({
+  src: '../../public/fonts/CuteChalk.ttf', // Adjust path as needed
+  variable: '--cute-chalk-font',
+  display: 'swap',
+})
+
+const EraserDust = localFont({
+  src: '../../public/fonts/EraserDust.ttf', // Adjust path as needed
+  variable: '--eraser-dust-font',
+  display: 'swap',
+})
+
+
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,7 +70,7 @@ export const metadata: Metadata = {
   title: "BAcked Up: The 02 Files",
   description: "BSIT-BA 02",
   icons: {
-    icon: "/ba-icon.png", 
+    icon: "/favicon.ico", 
   },
 };
 
@@ -50,7 +83,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${EasyChalk.variable} ${ChalkStick.variable} ${CreamyChalk.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} 
+        antialiased ${EasyChalk.variable} ${ChalkStick.variable} ${CreamyChalk.variable} ${BetterSweet.variable} ${BrightChalk.variable}
+        ${ChalkClouds.variable} ${CuteChalk.variable} ${EraserDust.variable}`}
       >
         <Navbar />
         {children}
