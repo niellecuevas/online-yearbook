@@ -573,7 +573,7 @@ const Messages: React.FC = () => {
   }, []);
 
   // Function to distribute messages evenly across columns based on content length
-const distributeMessages = (messages) => {
+const distributeMessages = (messages: Message[])  => {
   const columns = [[], [], []];
   const columnHeights = [0, 0, 0];
   
