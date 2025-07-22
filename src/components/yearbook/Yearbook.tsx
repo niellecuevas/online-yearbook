@@ -487,15 +487,15 @@ const Yearbook: FC = () => {
 
             {/* Back Cover */}
             <Page number={totalPages - 1}>
-              <div className="flex flex-col items-center justify-center h-full bg-red-800 text-white">
+              <div className="flex flex-col items-center justify-center h-full bg-red-800 text-white bg-[url('/images/bgcover_1.png')] bg-cover bg-center">
                 <h2
-                  className="text-4xl font-bold mb-4"
+                  className="text-4xl font-bold mb-4 text-[#4C0C0C]"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   The End
                 </h2>
-                <p className="text-lg opacity-90">Thank you for the memories</p>
-                <p className="text-sm opacity-75 mt-4">Class of 2025</p>
+                <p className="text-lg opacity-90 text-[#4C0C0C]">Thank you for the memories</p>
+                <p className="text-sm opacity-75 mt-4 text-[#4C0C0C]">Class of 2025</p>
               </div>
             </Page>
           </HTMLFlipBook>
