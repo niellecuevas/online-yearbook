@@ -36,7 +36,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BAcked Up: The 02 Files",
   description: "BSIT-BA 02",
+  icons: {
+    icon: "/ba-icon.png", 
+  },
 };
+
 
 export default function RootLayout({
   children,

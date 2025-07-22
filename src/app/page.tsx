@@ -10,7 +10,7 @@ export default function Home() {
     <div className="relative flex flex-col items-center justify-center bg-[#02000D] text-white overflow-hidden">
       <div className="w-full">
         <VideoBanner
-        videoId="5YNaUd_zc0k" // Replace with your YouTube video ID
+        videoId="5YNaUd_zc0k" 
         nextSectionId="messages"
         autoPlay={true}
         muted={false}
@@ -30,8 +30,8 @@ export default function Home() {
       </div>
 
           <Messages />
-      <Yearbook />
-      <CreditFooter />        
+          <Yearbook />
+          <CreditFooter />        
     </div>
   );
 }
