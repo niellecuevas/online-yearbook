@@ -446,7 +446,7 @@ const Yearbook: FC = () => {
           >
             {/* Cover Page */}
             <Page number={0}>
-              <div className="flex flex-col items-center justify-center h-full bg-red-800 text-white">
+            <div className="flex flex-col items-center justify-center h-full text-white bg-[url('/images/bgcover_1.png')] bg-cover bg-center">
                 <div className="w-full max-w-md">
                   <Image
                     src="/images/classpic.webp"
@@ -458,12 +458,12 @@ const Yearbook: FC = () => {
                   />
                 </div>
                 <h2
-                  className="text-3xl font-bold mb-2"
+                  className="text-3xl font-bold mb-2 text-[#4C0C0C]"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   Class of 2025
                 </h2>
-                <p className="text-lg opacity-90">Yearbook</p>
+                <p className="text-lg opacity-90 text-[#4C0C0C]">Yearbook</p>
               </div>
             </Page>
 
