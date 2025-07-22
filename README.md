@@ -1,6 +1,6 @@
 # 🎓 The 02 Files: Our Digital Yearbook
 
-A special keepsake for ** Batangas State University - The National Engineering University - Lipa Campus BSIT-BA 02** — complete with a video to look back on, a chalkboard for heartfelt messages, and a flipbook to remember every one of us.
+A special keepsake for **Batangas State University - The National Engineering University - Lipa Campus BSIT-BA 02** — complete with a video to look back on, a chalkboard for heartfelt messages, and a flipbook to remember every one of us.
 
 🌐 [www.the02files.site](http://www.the02files.site)
 
