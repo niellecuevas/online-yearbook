@@ -573,24 +573,23 @@ const Messages: React.FC = () => {
   }, []);
 
   // Function to distribute messages evenly across columns based on content length
-const distributeMessages = (messages: Message[])  => {
-  const columns = [[], [], []];
-  const columnHeights = [0, 0, 0];
+  const distributeMessages = (messages: Message[]): Message[][] => {
+    const columns: Message[][] = [[], [], []]; // Each sub-array is a column of Message objects
+    const columnHeights = [0, 0, 0];
   
-  messages.forEach((msg) => {
-    // Estimate message height based on content length
-    const estimatedHeight = Math.max(100, msg.message.length * 0.8 + msg.name.length * 0.5 + 80);
-    
-    // Find the column with the least total height
-    const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-    
-    // Add message to the shortest column
-    columns[shortestColumnIndex].push(msg);
-    columnHeights[shortestColumnIndex] += estimatedHeight;
-  });
+    messages.forEach((msg) => {
+      const estimatedHeight = Math.max(
+        100,
+        msg.message.length * 0.8 + msg.name.length * 0.5 + 80
+      );
   
-  return columns;
-};
+      const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      columns[shortestColumnIndex].push(msg);
+      columnHeights[shortestColumnIndex] += estimatedHeight;
+    });
+  
+    return columns;
+  };  
 
 return (
   <div
