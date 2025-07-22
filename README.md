@@ -33,9 +33,9 @@ A special keepsake for **BSIT-BA 02** — complete with a video to look back on,
 
 - 🧠 **Concept** – Maureen Lozares & Raniella Cuevas 
 - 📋 **Project Manager** – Maureen Lozares  
-- 💻 **Fullstack Developers** – Raniella Cuevas & John Lorenz Mayo  
-- 🎨 **Frontend Developers** – Ivan Medrano & Don Daniel Gube  
-- 🎞️ **Video Editor** – Ashera Kathreen  
+- 💻 **Fullstack Developers** – Raniella Cuevas, John Lorenz Mayo & Maureen Lozares   
+- 🎨 **Frontend Developers** – Ivan Medrano & Don Daniell Gube  
+- 🎞️ **Video Editor** – Ashera Kathreen Aguilar  
 - ✍️ **Content & Texts** – Maria Andrea Comia  
 - 🌟 **Special Thanks** – To every classmate who made this possible. This wouldn’t be the same without you.
 
