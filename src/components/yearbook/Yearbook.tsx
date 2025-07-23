@@ -134,7 +134,7 @@ const allStudents: Student[] = [
   {
     name: "GARCIA, JELLO MARI C.",
     imageUrl: "/toga/Garcia.webp",
-    motto: "Ang dalawang L sa pangalan ko ay 'Laging Late'",
+    motto: "The L's in Jello stands for 'Laging Late'",
     latinHonor: "Cum Laude",
   },
   {
