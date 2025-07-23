@@ -134,9 +134,8 @@ const allStudents: Student[] = [
   {
     name: "GARCIA, JELLO MARI C.",
     imageUrl: "/toga/Garcia.webp",
-    motto: " ",
+    motto: "LATE",
     latinHonor: "Cum Laude",
-    itPassport: true,
   },
   {
     name: "GUBE, DON DANIELL C.",
@@ -153,7 +152,7 @@ const allStudents: Student[] = [
   {
     name: "HERNANDEZ, MARK JELO M.",
     imageUrl: "/toga/Hernandez J.webp",
-    motto: "BAHALA NA SI BATMAN",
+    motto: "Capítulo cerrado. Próximo nivel: la vida",
   },
   {
     name: "ILAO, JHON KYLE P.",
@@ -188,7 +187,7 @@ const allStudents: Student[] = [
   {
     name: "MANIGBAS, QUEENIE ANGELOU V.",
     imageUrl: "/toga/Manigbas.webp",
-    motto: " ",
+    motto: "The Stars in the Sky. There can only be one sun at a time. Never obscure the sunlight, or rival the sun's brilliance; rather, fade into the sky and find ways to heighten the master star's intensity.",
   },
   {
     name: "MAULEON, ARABELLA LOIS P.",
@@ -230,7 +229,7 @@ const allStudents: Student[] = [
   {
     name: "PUNZALAN, JHONATHAN T.",
     imageUrl: "/toga/Punzalan.webp",
-    motto: " ",
+    motto: "From dreams to reality, this is where my journey begins, The world I dream of is the future I'm about to build.",
   },
   {
     name: "REYES, MARIA BETTY R.",
@@ -245,7 +244,7 @@ const allStudents: Student[] = [
   {
     name: "SILANG, L-SON F.",
     imageUrl: "/toga/Silang.webp",
-    motto: "SI LSON NA CLINGY KASURA?",
+    motto: "I may not have perfect grades, but I have perfect timing… when it comes to cramming",
   },
   {
     name: "SUAREZ, IRISH LEAN C.",
